@@ -7,6 +7,6 @@ public class Wagon implements Component {
 	
 	@Override
 	public Component createComponent() {
-		//todo
+		return null;
 	}
 }
