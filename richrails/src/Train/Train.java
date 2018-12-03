@@ -3,12 +3,14 @@ package Train;
 import java.util.ArrayList;
 
 public class Train {
-	private ArrayList<Component> allComponents = new ArrayList<Component>();
+	private ArrayList<Component> allComponents;
 	private String name;
 	private int trainID;
 	
 	public Train(String name) {
 		this.name = name;
+		allComponents = new ArrayList<Component>();
+		
 	}
 	
 	public void addComponent(Component c) {
