@@ -5,6 +5,10 @@ public class Wagon implements Component {
 	private int wagonID;
 	private int seats;
 	
+	public Wagon(int seats) {
+		this.seats = seats;
+	}
+	
 	@Override
 	public Component createComponent() {
 		return null;
