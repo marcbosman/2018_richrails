@@ -12,7 +12,7 @@ public class Train {
 	}
 	
 	public void addComponent(Component c) {
-		//todo
+		allComponents.add(c);
 	}
 	
 	public int calculateSeats() {
