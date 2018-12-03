@@ -1,6 +1,6 @@
 package Train;
 
-public class Locomotive {
+public class Locomotive implements Component {
 	private int LocomotiveId;
 	private int horsePower;
 	
