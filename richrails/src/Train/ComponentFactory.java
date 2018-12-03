@@ -7,7 +7,7 @@ public class ComponentFactory {
 	      if(componentType == null){
 	         return null;
 	      }		
-	      // WERKT PAS ALS SUPER/SUBSTRUCTUUR ER IS
+	      /// WERKT PAS ALS SUPER/SUBSTRUCTUUR ER IS
 //	      if(componentType.equalsIgnoreCase("LOCOMOTIVE")){
 //	         return new Locomotive();
 //	         
