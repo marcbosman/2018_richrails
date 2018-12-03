@@ -1,5 +1,11 @@
 package Train;
 
-public class Component {
-
+public interface Component {
+	
+	Component createComponent();
+	
+	
+	
+	
+	
 }
