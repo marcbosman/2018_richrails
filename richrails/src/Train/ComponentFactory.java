@@ -2,7 +2,7 @@ package Train;
 
 public class ComponentFactory {
 	
-	   //use getShape method to get object of type shape 
+	   //use getComponent method to get object of type component
 	   public Component getComponent(String componentType){
 	      if(componentType == null){
 	         return null;
