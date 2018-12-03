@@ -7,13 +7,13 @@ public class ComponentFactory {
 	      if(componentType == null){
 	         return null;
 	      }		
-	      /// WERKT PAS ALS SUPER/SUBSTRUCTUUR ER IS
-//	      if(componentType.equalsIgnoreCase("LOCOMOTIVE")){
-//	         return new Locomotive();
-//	         
-//	      } else if(componentType.equalsIgnoreCase("WAGON")){
-//	         return new Wagon();
-//	      }
+
+	      if(componentType.equalsIgnoreCase("LOCOMOTIVE")){
+	         return new Locomotive();
+	         
+	      } else if(componentType.equalsIgnoreCase("WAGON")){
+	         return new Wagon();
+	      }
 	      
 	      return null;
 	   }

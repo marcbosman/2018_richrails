@@ -5,6 +5,9 @@ public class Wagon implements Component {
 	private int wagonID;
 	private int seats;
 	
+	public Wagon()
+	{}
+	
 	public Wagon(int seats) {
 		this.seats = seats;
 	}

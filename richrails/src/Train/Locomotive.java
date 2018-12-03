@@ -4,6 +4,9 @@ public class Locomotive implements Component {
 	private int LocomotiveId;
 	private int horsePower;
 	
+	public Locomotive()
+	{}
+	
 	public Locomotive(int horsePower) {
 		this.horsePower = horsePower;
 	}
