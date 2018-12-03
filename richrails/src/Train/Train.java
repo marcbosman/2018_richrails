@@ -3,7 +3,7 @@ package Train;
 import java.util.ArrayList;
 
 public class Train {
-	private ArrayList<Component> allComponents;
+	private ArrayList<Component> allComponents = new ArrayList<Component>();
 	private String name;
 	private int trainID;
 	
@@ -41,7 +41,7 @@ public class Train {
 	}
 	
 	public String toString() {
-		//todo
-		return "";
+		String s = trainID + " " + allComponents;
+		return s;
 	}
 }

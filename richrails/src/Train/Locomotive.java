@@ -12,6 +12,7 @@ public class Locomotive implements Component {
 		this.horsePower = horsePower;
 	}
 	
+	@Override
 	public Component createComponent() {
 		return new Locomotive(0);
 	}
