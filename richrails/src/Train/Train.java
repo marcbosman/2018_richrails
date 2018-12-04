@@ -8,8 +8,10 @@ public class Train {
 	private int trainID;
 	
 	public Train(String name) {
+		ComponentFactory ComponentFactory = new ComponentFactory();
 		this.name = name;
 		allComponents = new ArrayList<Component>();
+		this.allComponents.add(ComponentFactory.getComponent("locomotive"));
 		
 	}
 	

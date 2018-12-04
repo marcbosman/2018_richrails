@@ -3,7 +3,7 @@ package Train;
 public class Locomotive implements Component {
 	private String name;
 	private int LocomotiveId;
-	private int horsePower;
+	private int horsePower = 100;
 	
 	public Locomotive()
 	{}
