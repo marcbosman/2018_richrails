@@ -12,10 +12,11 @@ public class Wagon implements Component {
 		this.seats = seats;
 	}
 	
-	@Override
-	public Component createComponent() {
-		return new Wagon();
-	}
+	//Dit gebruiken we niet
+//	@Override
+//	public Component createComponent() {
+//		return new Wagon();
+//	}
 	
 	public String getName() {
 		return name;

@@ -3,7 +3,7 @@ package Train;
 public class Locomotive implements Component {
 	private String name;
 	private int LocomotiveId;
-	private int horsePower = 100;
+	private int horsePower = 200;
 	
 	public Locomotive()
 	{}
@@ -12,10 +12,11 @@ public class Locomotive implements Component {
 		this.horsePower = horsePower;
 	}
 	
-	@Override
-	public Component createComponent() {
-		return new Locomotive(0);
-	}
+	//Dit gebruiken we nooit
+//	@Override
+//	public Component createComponent() {
+//		return new Locomotive(0);
+//	}
 	
 	public String getName() {
 		return name;

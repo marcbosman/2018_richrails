@@ -7,6 +7,7 @@ public class Train {
 	private String name;
 	private int trainID;
 	
+	//Bij het aanmaken van een train wordt een locomotive toegevoegd. Hiervoor moet eerst een ComponentFactory geinstantieerd worden.
 	public Train(String name) {
 		ComponentFactory ComponentFactory = new ComponentFactory();
 		this.name = name;
