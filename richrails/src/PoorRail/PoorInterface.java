@@ -25,6 +25,9 @@ import javax.swing.JTextPane;
 
 import javax.swing.WindowConstants;
 import javax.swing.border.BevelBorder;
+
+import Train.*;
+
 import javax.swing.SwingUtilities;
 
 
@@ -41,7 +44,7 @@ import javax.swing.SwingUtilities;
 * LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
 */
 public class PoorInterface extends javax.swing.JFrame implements ActionListener 
-{
+{	
 	private JPanel jPanel1;
 	private JTextPane tpTextTrain;
 	private JButton btnDeleteWagon3;
@@ -230,13 +233,29 @@ public class PoorInterface extends javax.swing.JFrame implements ActionListener
 		{
 			// NEW TRAIN BUTTON
 			
-//			String train = tfNewTrain.getText();
-//			if (train != null && train.trim().length()>0)
+			{
+				String trainName = tfNewTrain.getText();
+				if (trainName != null && trainName.trim().length()>0)
+				{
+					Train train = new Train(trainName);
+					SideViewObserver svo = new SideViewObserver(train);
+					currentTrain = cbAllTrains.getSelectedIndex();
+					svo.addTrain(train, cbAllTrains, numberOfWagons, currentNumberOfWagons, currentTrain);
+					svo.drawLocomotive(train, drawPanel, currentTrain, OFFSET);
+				}
+			
+			
+			
+//			String trainName = tfNewTrain.getText();
+//			if (trainName != null && trainName.trim().length()>0)
 //			{
-//				train = addTrain(train);
+//				Train train = new Train(trainName);
+//				SideViewObserver svo = new SideViewObserver(train);
 //				currentTrain = cbAllTrains.getSelectedIndex();
-//				drawTrain(train);
-//			}
+//				svo.drawLocomotive(train, drawPanel, currentTrain, OFFSET);
+//				System.out.println(train.getName());
+//				
+			}
 		}
 		else if (event.getSource() == btnChooseTrain)
 		{
@@ -325,58 +344,59 @@ public class PoorInterface extends javax.swing.JFrame implements ActionListener
 //			repaint(30+TRAINLENGTH,80+currentTrain*OFFSET,1,1);		
 		}
 	}
+		
+		public void drawLocomotive(String train) 
+		{
+			if (train != "")
+			{
+				Graphics g = drawPanel.getGraphics();
+				g.setColor(Color.LIGHT_GRAY);
+				g.fillRect(30,80+currentTrain*OFFSET,80,40);
+				g.fillRect(80,60+currentTrain*OFFSET,30,30);
+				g.drawRoundRect(85, 40+currentTrain*OFFSET, 20, 20, 20, 20);
+				g.drawRoundRect(85, currentTrain*OFFSET, 40, 40, 40, 40);
+				g.setColor(Color.BLACK);
+				g.fillRoundRect(35, 120+currentTrain*OFFSET, 20, 20, 20, 20);
+				g.fillRoundRect(80, 120+currentTrain*OFFSET, 20, 20, 20, 20);
+				g.drawString(train,40,105+currentTrain*OFFSET);
+			}
+	    }
 	
 	
 	// FUNCTIES GEBRUIKT IN DE GUI(buttons)
-	public String addTrain(String train)
-	{
-		String t = "";
-		try
-		{
-			t = train.trim();
-			for (int i = 0; i < cbAllTrains.getItemCount();i++ )
-			{
-				String cbTrain = (String)cbAllTrains.getItemAt(i);
-				if (cbTrain.equalsIgnoreCase(t))
-				{
-					t = "";
-					break;
-				}
-			}
-			if (t != "")
-			{
-				if (currentTrain >= 0)
-				{
-					numberOfWagons.put(currentTrain,currentNumberOfWagons);
-				}
-				cbAllTrains.addItem(t);
-				cbAllTrains.setSelectedItem(t);
-				numberOfWagons.put(t, 0);
-			}
-		}
-		catch (Exception e)
-		{
-		}
-		return t;
-			
-	}
-	
-	public void drawTrain(String train) 
-	{
-		if (train != "")
-		{
-			Graphics g = drawPanel.getGraphics();
-			g.setColor(Color.LIGHT_GRAY);
-			g.fillRect(30,80+currentTrain*OFFSET,80,40);
-			g.fillRect(80,60+currentTrain*OFFSET,30,30);
-			g.drawRoundRect(85, 40+currentTrain*OFFSET, 20, 20, 20, 20);
-			g.drawRoundRect(85, currentTrain*OFFSET, 40, 40, 40, 40);
-			g.setColor(Color.BLACK);
-			g.fillRoundRect(35, 120+currentTrain*OFFSET, 20, 20, 20, 20);
-			g.fillRoundRect(80, 120+currentTrain*OFFSET, 20, 20, 20, 20);
-			g.drawString(train,40,105+currentTrain*OFFSET);
-		}
-    }
+//	public String addTrain(String train)
+//	{
+//		String t = "";
+//		try
+//		{
+//			t = train.trim();
+//			for (int i = 0; i < cbAllTrains.getItemCount();i++ )
+//			{
+//				String cbTrain = (String)cbAllTrains.getItemAt(i);
+//				if (cbTrain.equalsIgnoreCase(t))
+//				{
+//					t = "";
+//					break;
+//				}
+//			}
+//			if (t != "")
+//			{
+//				if (currentTrain >= 0)
+//				{
+//					numberOfWagons.put(currentTrain,currentNumberOfWagons);
+//				}
+//				cbAllTrains.addItem(t);
+//				cbAllTrains.setSelectedItem(t);
+//				numberOfWagons.put(t, 0);
+//			}
+//		}
+//		catch (Exception e)
+//		{
+//		}
+//		return t;
+//			
+//	}
+
 	
 	public void drawWagon(String wagon) 
 	{
