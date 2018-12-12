@@ -240,8 +240,8 @@ public class PoorInterface extends javax.swing.JFrame implements ActionListener
 					Train train = new Train(trainName);
 					SideViewObserver svo = new SideViewObserver(train);
 					currentTrain = cbAllTrains.getSelectedIndex();
-					svo.addTrain(train, cbAllTrains, numberOfWagons, currentNumberOfWagons, currentTrain);
-					svo.drawLocomotive(train, drawPanel, currentTrain, OFFSET);
+//					svo.addTrain(train, cbAllTrains, numberOfWagons, currentNumberOfWagons, currentTrain);
+					svo.drawLocomotive(train, drawPanel);
 				}
 			
 			
