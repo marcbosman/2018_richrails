@@ -12,12 +12,9 @@ public class Train {
 	//Dit is een hele brakke oplossing
 	// to-do
 	public Train(String name) {
-		ComponentFactory ComponentFactory = new ComponentFactory();
 		this.name = name;
 		observers = new ArrayList<Observer>();
-		allComponents = new ArrayList<Component>();
-		this.allComponents.add(ComponentFactory.getComponent("locomotive"));
-		
+		allComponents = new ArrayList<Component>();		
 	}
 	
 	public void addComponent(Component c) {
