@@ -44,9 +44,8 @@ public class Train {
 		return trainID;
 	}
 	
-	public Train newTrain(String name) {
+	public void newTrain(String name) {
 		Train tr = new Train(name);
-		return tr;
 	}
 	
 	public ArrayList<Component> getState(){
