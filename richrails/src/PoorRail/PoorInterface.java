@@ -96,7 +96,7 @@ public class PoorInterface extends javax.swing.JFrame implements ActionListener
 		// GUI BUILDING
 		try 
 		{
-			this.setTitle("PoorRail");
+			this.setTitle("EvenPoorerRail");
 			GridBagLayout thisLayout = new GridBagLayout();
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
 			thisLayout.rowWeights = new double[] {0.1, 0.1, 0.1, 0.1};
@@ -122,6 +122,7 @@ public class PoorInterface extends javax.swing.JFrame implements ActionListener
 				getContentPane().add(jPanel2, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
 				{
 					tpTextTrain = new JTextPane();
+					tpTextTrain.setEditable(false);
 					jPanel2.add(tpTextTrain, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 					jPanel2.setBounds(10, 10, 100, 15);
 					jPanel2Layout.rowWeights = new double[] {0.1, 0.1, 0.1, 0.1};
@@ -132,6 +133,7 @@ public class PoorInterface extends javax.swing.JFrame implements ActionListener
 				}
 				{
 					tfNewTrain = new JTextField(20);
+					tfNewTrain.requestFocus();
 					jPanel2.add(tfNewTrain, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 				}
 				{
@@ -178,6 +180,7 @@ public class PoorInterface extends javax.swing.JFrame implements ActionListener
 				pnlWagons.setBorder(BorderFactory.createEtchedBorder(BevelBorder.LOWERED));
 				{
 					tfCurrentTrain = new JTextField();
+					tfCurrentTrain.setEditable(false);
 					pnlWagons.add(tfCurrentTrain, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
 					tfCurrentTrain.setText("selected: ");
 				}
