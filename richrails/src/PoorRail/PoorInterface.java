@@ -19,6 +19,7 @@ import javax.swing.ComboBoxModel;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
@@ -29,6 +30,8 @@ import javax.swing.border.BevelBorder;
 import Train.*;
 
 import javax.swing.SwingUtilities;
+import javax.swing.border.SoftBevelBorder;
+import javax.swing.JTextArea;
 
 
 /**
@@ -79,8 +82,13 @@ public class PoorInterface extends javax.swing.JFrame implements ActionListener
 			public void run() 
 			{
 				PoorInterface inst = new PoorInterface();
-				inst.setLocationRelativeTo(null);
+				inst.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+//				inst.setUndecorated(true);
 				inst.setVisible(true);
+//				inst.setLocationRelativeTo(null);
+//				inst.setVisible(true);
+//			    inst.getContentPane().setPreferredSize(new Dimension(1000, 1000));
+//			    inst.pack();
 			}
 		});
 	}
@@ -99,15 +107,15 @@ public class PoorInterface extends javax.swing.JFrame implements ActionListener
 			this.setTitle("EvenPoorerRail");
 			GridBagLayout thisLayout = new GridBagLayout();
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-			thisLayout.rowWeights = new double[] {0.1, 0.1, 0.1, 0.1};
-			thisLayout.rowHeights = new int[] {7, 7, 7, 7};
-			thisLayout.columnWeights = new double[] {0.1, 0.1, 0.1, 0.1};
-			thisLayout.columnWidths = new int[] {7, 7, 7, 7};
+			thisLayout.rowWeights = new double[] {0.1, 0.1, 0.0};
+			thisLayout.rowHeights = new int[] {7, 7, 7};
+			thisLayout.columnWeights = new double[] {0.1, 0.1};
+			thisLayout.columnWidths = new int[] {500, 489};
 			getContentPane().setLayout(thisLayout);
 			{
 				jPanel1 = new JPanel();
 				jPanel1.setLayout(new BorderLayout());
-				getContentPane().add(jPanel1, new GridBagConstraints(0, 0, 4, 2, 0.0, 0.0, GridBagConstraints.EAST, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+				getContentPane().add(jPanel1, new GridBagConstraints(0, 0, 2, 2, 0.0, 0.0, GridBagConstraints.EAST, GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
 				{
 					drawPanel = new JPanel();
 					drawPanel.setBackground(Color.WHITE);
@@ -115,15 +123,68 @@ public class PoorInterface extends javax.swing.JFrame implements ActionListener
 				}
 			}
 			{
+				pnlWagons = new JPanel();
+				GridBagLayout jPanel3Layout = new GridBagLayout();
+				getContentPane().add(pnlWagons, new GridBagConstraints(1, 2, 1, 1, 0.0, 0.0, GridBagConstraints.SOUTH, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
+				jPanel3Layout.rowWeights = new double[] {0.1, 0.1, 0.1, 0.1};
+				jPanel3Layout.rowHeights = new int[] {7, 7, 7, 7};
+				jPanel3Layout.columnWeights = new double[] {0.1, 0.1, 0.1, 0.1};
+				jPanel3Layout.columnWidths = new int[] {7, 7, 7, 7};
+				pnlWagons.setLayout(jPanel3Layout);
+				pnlWagons.setBorder(BorderFactory.createEtchedBorder(BevelBorder.LOWERED));
+				{
+					tfCurrentTrain = new JTextField();
+					tfCurrentTrain.setEditable(false);
+					pnlWagons.add(tfCurrentTrain, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.SOUTH, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
+					tfCurrentTrain.setText("selected: ");
+				}
+				{
+					btnAddWagon1 = new JButton();
+					pnlWagons.add(btnAddWagon1, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0, GridBagConstraints.SOUTH, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+					btnAddWagon1.setText("add wagon 1");
+					btnAddWagon1.addActionListener(this);
+				}
+				{
+					btnAddWagon2 = new JButton();
+					pnlWagons.add(btnAddWagon2, new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0, GridBagConstraints.SOUTH, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+					btnAddWagon2.setText("add wagon 2");
+					btnAddWagon2.addActionListener(this);
+				}
+				{
+					jButton1 = new JButton();
+					pnlWagons.add(jButton1, new GridBagConstraints(1, 2, 1, 1, 0.0, 0.0, GridBagConstraints.SOUTH, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+					jButton1.setText("add wagon 3");
+					jButton1.addActionListener(this);
+				}
+				{
+					btnDeleteWagon1 = new JButton();
+					pnlWagons.add(btnDeleteWagon1, new GridBagConstraints(2, 0, 1, 1, 0.0, 0.0, GridBagConstraints.SOUTH, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+					btnDeleteWagon1.setText("delete wagon 1");
+					btnDeleteWagon1.addActionListener(this);
+				}
+				{
+					btnDeleteWagon2 = new JButton();
+					pnlWagons.add(btnDeleteWagon2, new GridBagConstraints(2, 1, 1, 1, 0.0, 0.0, GridBagConstraints.SOUTH, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+					btnDeleteWagon2.setText("delete wagon 2");
+					btnDeleteWagon2.addActionListener(this);
+				}
+				{
+					btnDeleteWagon3 = new JButton();
+					pnlWagons.add(btnDeleteWagon3, new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0, GridBagConstraints.SOUTH, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+					btnDeleteWagon3.setText("delete wagon 3");
+					btnDeleteWagon3.addActionListener(this);
+				}
+			}
+			{
 				jPanel2 = new JPanel();
 				GridBagLayout jPanel2Layout = new GridBagLayout();
 				//jPanel2.setLayout(null);
 				jPanel2.setLayout(jPanel2Layout);
-				getContentPane().add(jPanel2, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
+				getContentPane().add(jPanel2, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0, GridBagConstraints.SOUTH, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 5), 0, 0));
 				{
 					tpTextTrain = new JTextPane();
 					tpTextTrain.setEditable(false);
-					jPanel2.add(tpTextTrain, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+					jPanel2.add(tpTextTrain, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.SOUTH, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 					jPanel2.setBounds(10, 10, 100, 15);
 					jPanel2Layout.rowWeights = new double[] {0.1, 0.1, 0.1, 0.1};
 					jPanel2Layout.rowHeights = new int[] {7, 7, 7, 7};
@@ -134,11 +195,11 @@ public class PoorInterface extends javax.swing.JFrame implements ActionListener
 				{
 					tfNewTrain = new JTextField(20);
 					tfNewTrain.requestFocus();
-					jPanel2.add(tfNewTrain, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+					jPanel2.add(tfNewTrain, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0, GridBagConstraints.SOUTH, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 				}
 				{
 					btnNewTrain = new JButton();
-					jPanel2.add(btnNewTrain, new GridBagConstraints(2, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+					jPanel2.add(btnNewTrain, new GridBagConstraints(2, 0, 1, 1, 0.0, 0.0, GridBagConstraints.SOUTH, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 					btnNewTrain.setText("make new train");
 					btnNewTrain.addActionListener(this);
 				}
@@ -152,77 +213,23 @@ public class PoorInterface extends javax.swing.JFrame implements ActionListener
 					cbAllTrainsLayout.setHgap(5);
 					//cbAllTrainsLayout.setVgap(5);
 					cbAllTrains.setLayout(cbAllTrainsLayout);*/
-					jPanel2.add(cbAllTrains, new GridBagConstraints(1, 1, 1, 2, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
+					jPanel2.add(cbAllTrains, new GridBagConstraints(1, 1, 1, 2, 0.0, 0.0, GridBagConstraints.SOUTH, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
 					cbAllTrains.setModel(cbAllTrainsModel);
 				}
 				{
 					btnChooseTrain = new JButton();
-					jPanel2.add(btnChooseTrain, new GridBagConstraints(2, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+					jPanel2.add(btnChooseTrain, new GridBagConstraints(2, 1, 1, 1, 0.0, 0.0, GridBagConstraints.SOUTH, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 					btnChooseTrain.setText("select train");
 					btnChooseTrain.addActionListener(this);
 				}
 				{
 					btnDeleteTrain = new JButton();
-					jPanel2.add(btnDeleteTrain, new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
+					jPanel2.add(btnDeleteTrain, new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0, GridBagConstraints.SOUTH, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 					btnDeleteTrain.setText("delete train");
 					btnDeleteTrain.addActionListener(this);
 				}
 			}
-			{
-				pnlWagons = new JPanel();
-				GridBagLayout jPanel3Layout = new GridBagLayout();
-				getContentPane().add(pnlWagons, new GridBagConstraints(1, 2, 2, 3, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.BOTH, new Insets(0, 0, 0, 0), 0, 0));
-				jPanel3Layout.rowWeights = new double[] {0.1, 0.1, 0.1, 0.1};
-				jPanel3Layout.rowHeights = new int[] {7, 7, 7, 7};
-				jPanel3Layout.columnWeights = new double[] {0.1, 0.1, 0.1, 0.1};
-				jPanel3Layout.columnWidths = new int[] {7, 7, 7, 7};
-				pnlWagons.setLayout(jPanel3Layout);
-				pnlWagons.setBorder(BorderFactory.createEtchedBorder(BevelBorder.LOWERED));
-				{
-					tfCurrentTrain = new JTextField();
-					tfCurrentTrain.setEditable(false);
-					pnlWagons.add(tfCurrentTrain, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
-					tfCurrentTrain.setText("selected: ");
-				}
-				{
-					btnAddWagon1 = new JButton();
-					pnlWagons.add(btnAddWagon1, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-					btnAddWagon1.setText("add wagon 1");
-					btnAddWagon1.addActionListener(this);
-				}
-				{
-					btnAddWagon2 = new JButton();
-					pnlWagons.add(btnAddWagon2, new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-					btnAddWagon2.setText("add wagon 2");
-					btnAddWagon2.addActionListener(this);
-				}
-				{
-					jButton1 = new JButton();
-					pnlWagons.add(jButton1, new GridBagConstraints(1, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-					jButton1.setText("add wagon 3");
-					jButton1.addActionListener(this);
-				}
-				{
-					btnDeleteWagon1 = new JButton();
-					pnlWagons.add(btnDeleteWagon1, new GridBagConstraints(2, 0, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-					btnDeleteWagon1.setText("delete wagon 1");
-					btnDeleteWagon1.addActionListener(this);
-				}
-				{
-					btnDeleteWagon2 = new JButton();
-					pnlWagons.add(btnDeleteWagon2, new GridBagConstraints(2, 1, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-					btnDeleteWagon2.setText("delete wagon 2");
-					btnDeleteWagon2.addActionListener(this);
-				}
-				{
-					btnDeleteWagon3 = new JButton();
-					pnlWagons.add(btnDeleteWagon3, new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0, GridBagConstraints.CENTER, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-					btnDeleteWagon3.setText("delete wagon 3");
-					btnDeleteWagon3.addActionListener(this);
-				}
-			}
 			pack();
-			setSize(800, 600);
 			numberOfWagons = new HashMap();
 		} catch (Exception e) 
 		{
