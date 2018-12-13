@@ -6,7 +6,7 @@ public class Train {
 	private ArrayList<Component> allComponents;
 	private String name;
 	private int trainID;
-	private ArrayList<Observer> observers;
+	private ArrayList<Observer> observers = new ArrayList<Observer>();
 	
 	//Bij het aanmaken van een train wordt een locomotive toegevoegd. Hiervoor moet eerst een ComponentFactory geinstantieerd worden.
 	//Dit is een hele brakke oplossing
@@ -14,15 +14,17 @@ public class Train {
 	public Train(String name) {
 		ComponentFactory ComponentFactory = new ComponentFactory();
 		this.name = name;
-		observers = new ArrayList<Observer>();
 		allComponents = new ArrayList<Component>();
-		this.allComponents.add(ComponentFactory.getComponent("locomotive"));
+		new SideViewObserver(this);
+		this.addComponent(ComponentFactory.getComponent("locomotive"));
 		TrainController.getInstance().addTrain(this);
+		
 		
 	}
 	
 	public void addComponent(Component c) {
 		allComponents.add(c);
+		notifyAllObservers();
 	}
 	
 	public ArrayList<Component> getAllComponents() {
@@ -31,6 +33,7 @@ public class Train {
 
 	public void setAllComponents(ArrayList<Component> allComponents) {
 		this.allComponents = allComponents;
+		notifyAllObservers();
 	}
 
 	public String getName() {
@@ -68,8 +71,13 @@ public class Train {
 		return 0;
 	}
 	
+	public int currentNumberOfWagons() {
+		int i = allComponents.size();
+		return i;
+	}
+	
 	public String toString() {
-		String s = trainID + " " + allComponents;
+		String s = name;
 		return s;
 	}
 }

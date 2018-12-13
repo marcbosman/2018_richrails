@@ -61,7 +61,7 @@ public class PoorInterface extends javax.swing.JFrame implements ActionListener
 	private JButton btnNewTrain;
 	private JTextField tfNewTrain;
 	private JPanel jPanel2;
-	private JPanel drawPanel;
+	private static JPanel drawPanel;
 	
 	private HashMap numberOfWagons;
 	private int currentNumberOfWagons;
@@ -238,10 +238,10 @@ public class PoorInterface extends javax.swing.JFrame implements ActionListener
 				if (trainName != null && trainName.trim().length()>0)
 				{
 					Train train = new Train(trainName);
-					SideViewObserver svo = new SideViewObserver(train);
+					cbAllTrains.addItem(train);
 //					currentTrain = cbAllTrains.getSelectedIndex();
 //					svo.addTrain(train, cbAllTrains, numberOfWagons, currentNumberOfWagons, currentTrain);
-					svo.drawLocomotive(train, drawPanel);
+//					svo.drawLocomotive(train, drawPanel);
 				}
 			
 			
@@ -307,6 +307,7 @@ public class PoorInterface extends javax.swing.JFrame implements ActionListener
 		else if (event.getSource() == btnAddWagon1)
 		{
 			// ADD WAGON 1
+		
 			
 //			currentNumberOfWagons++;
 //			drawWagon("Wagon1");
@@ -408,4 +409,8 @@ public class PoorInterface extends javax.swing.JFrame implements ActionListener
 		g.fillRoundRect(80+currentNumberOfWagons*TRAINLENGTH, 120+currentTrain*OFFSET, 20, 20, 20, 20);
 		g.drawString(wagon,40+currentNumberOfWagons*TRAINLENGTH,105+currentTrain*OFFSET);
     }
+	
+	public static JPanel getdrawPanel() {
+		return drawPanel;
+	}
 }
