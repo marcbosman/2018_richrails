@@ -32,6 +32,8 @@ import Train.*;
 import javax.swing.SwingUtilities;
 import javax.swing.border.SoftBevelBorder;
 import javax.swing.JTextArea;
+import javax.swing.UIManager;
+import java.awt.SystemColor;
 
 
 /**
@@ -71,6 +73,12 @@ public class PoorInterface extends javax.swing.JFrame implements ActionListener
 	private int currentTrain = -1;
 	private int OFFSET = 100;
 	private int TRAINLENGTH = 100;
+	private JTextArea txtrTextArea;
+	private JTextArea txtrCmdOutput;
+	private JPanel panel;
+	private JTextPane txtpnEnterCommand;
+	private JTextField textField;
+	private JButton btnSubmit;
 
 	/**
 	* Auto-generated main method to display this JFrame
@@ -107,9 +115,9 @@ public class PoorInterface extends javax.swing.JFrame implements ActionListener
 			this.setTitle("EvenPoorerRail");
 			GridBagLayout thisLayout = new GridBagLayout();
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-			thisLayout.rowWeights = new double[] {0.1, 0.1, 0.0};
-			thisLayout.rowHeights = new int[] {7, 7, 7};
-			thisLayout.columnWeights = new double[] {0.1, 0.1};
+			thisLayout.rowWeights = new double[] {0.1, 0.1, 0.0, 0.0, 0.0};
+			thisLayout.rowHeights = new int[] {7, 7, 150, 0, 7};
+			thisLayout.columnWeights = new double[] {1.0, 1.0};
 			thisLayout.columnWidths = new int[] {500, 489};
 			getContentPane().setLayout(thisLayout);
 			{
@@ -123,17 +131,118 @@ public class PoorInterface extends javax.swing.JFrame implements ActionListener
 				}
 			}
 			{
+				txtrTextArea = new JTextArea();
+				txtrTextArea.setSize(new Dimension(200, 0));
+				txtrTextArea.setEditable(false);
+				txtrTextArea.setText("CMD");
+				GridBagConstraints gbc_txtrTextArea = new GridBagConstraints();
+				gbc_txtrTextArea.insets = new Insets(0, 0, 5, 5);
+				gbc_txtrTextArea.fill = GridBagConstraints.BOTH;
+				gbc_txtrTextArea.gridx = 0;
+				gbc_txtrTextArea.gridy = 2;
+				getContentPane().add(txtrTextArea, gbc_txtrTextArea);
+			}
+			{
+				txtrCmdOutput = new JTextArea();
+				txtrCmdOutput.setForeground(Color.WHITE);
+				txtrCmdOutput.setDisabledTextColor(Color.WHITE);
+				txtrCmdOutput.setBackground(Color.BLACK);
+				txtrCmdOutput.setEditable(false);
+				txtrCmdOutput.setText("CMD Output");
+				GridBagConstraints gbc_txtrCmdOutput = new GridBagConstraints();
+				gbc_txtrCmdOutput.gridheight = 2;
+				gbc_txtrCmdOutput.insets = new Insets(0, 0, 5, 0);
+				gbc_txtrCmdOutput.fill = GridBagConstraints.BOTH;
+				gbc_txtrCmdOutput.gridx = 1;
+				gbc_txtrCmdOutput.gridy = 2;
+				getContentPane().add(txtrCmdOutput, gbc_txtrCmdOutput);
+			}
+			{
+				panel = new JPanel();
+				panel.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
+				GridBagConstraints gbc_panel = new GridBagConstraints();
+				gbc_panel.anchor = GridBagConstraints.SOUTH;
+				gbc_panel.insets = new Insets(0, 0, 5, 5);
+				gbc_panel.fill = GridBagConstraints.HORIZONTAL;
+				gbc_panel.gridx = 0;
+				gbc_panel.gridy = 3;
+				getContentPane().add(panel, gbc_panel);
+				GridBagLayout gbl_panel = new GridBagLayout();
+				gbl_panel.columnWidths = new int[]{7, 7, 7, 0};
+				gbl_panel.rowHeights = new int[]{7, 0};
+				gbl_panel.columnWeights = new double[]{0.1, 0.1, 0.1, Double.MIN_VALUE};
+				gbl_panel.rowWeights = new double[]{0.1, Double.MIN_VALUE};
+				panel.setLayout(gbl_panel);
+				{
+					txtpnEnterCommand = new JTextPane();
+					txtpnEnterCommand.setText("Enter command:");
+					txtpnEnterCommand.setEditable(false);
+					txtpnEnterCommand.setBackground(SystemColor.menu);
+					GridBagConstraints gbc_txtpnEnterCommand = new GridBagConstraints();
+					gbc_txtpnEnterCommand.weighty = 0.0;
+					gbc_txtpnEnterCommand.weightx = 0.0;
+					gbc_txtpnEnterCommand.ipady = 0;
+					gbc_txtpnEnterCommand.ipadx = 0;
+					gbc_txtpnEnterCommand.gridwidth = 1;
+					gbc_txtpnEnterCommand.gridheight = 1;
+					gbc_txtpnEnterCommand.fill = GridBagConstraints.NONE;
+					gbc_txtpnEnterCommand.anchor = GridBagConstraints.SOUTH;
+					gbc_txtpnEnterCommand.insets = new Insets(0, 0, 0, 5);
+					gbc_txtpnEnterCommand.gridx = 0;
+					gbc_txtpnEnterCommand.gridy = 0;
+					panel.add(txtpnEnterCommand, gbc_txtpnEnterCommand);
+				}
+				{
+					textField = new JTextField(20);
+					GridBagConstraints gbc_textField = new GridBagConstraints();
+					gbc_textField.weighty = 0.0;
+					gbc_textField.weightx = 0.0;
+					gbc_textField.ipady = 0;
+					gbc_textField.ipadx = 0;
+					gbc_textField.gridwidth = 1;
+					gbc_textField.gridheight = 1;
+					gbc_textField.fill = GridBagConstraints.NONE;
+					gbc_textField.anchor = GridBagConstraints.SOUTH;
+					gbc_textField.insets = new Insets(0, 0, 0, 5);
+					gbc_textField.gridx = 1;
+					gbc_textField.gridy = 0;
+					panel.add(textField, gbc_textField);
+				}
+				{
+					btnSubmit = new JButton();
+					btnSubmit.addActionListener(new ActionListener() {
+						public void actionPerformed(ActionEvent arg0) {
+						}
+					});
+					btnSubmit.setText("Submit");
+					GridBagConstraints gbc_btnSubmit = new GridBagConstraints();
+					gbc_btnSubmit.weighty = 0.0;
+					gbc_btnSubmit.weightx = 0.0;
+					gbc_btnSubmit.ipady = 0;
+					gbc_btnSubmit.ipadx = 0;
+					gbc_btnSubmit.gridwidth = 1;
+					gbc_btnSubmit.gridheight = 1;
+					gbc_btnSubmit.fill = GridBagConstraints.NONE;
+					gbc_btnSubmit.anchor = GridBagConstraints.SOUTH;
+					gbc_btnSubmit.gridx = 2;
+					gbc_btnSubmit.gridy = 0;
+					panel.add(btnSubmit, gbc_btnSubmit);
+				}
+			}
+			{
 				pnlWagons = new JPanel();
 				GridBagLayout jPanel3Layout = new GridBagLayout();
-				getContentPane().add(pnlWagons, new GridBagConstraints(1, 2, 1, 1, 0.0, 0.0, GridBagConstraints.SOUTH, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
+				getContentPane().add(pnlWagons, new GridBagConstraints(1, 4, 1, 1, 0.0, 0.0, GridBagConstraints.SOUTH, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
 				jPanel3Layout.rowWeights = new double[] {0.1, 0.1, 0.1, 0.1};
 				jPanel3Layout.rowHeights = new int[] {7, 7, 7, 7};
 				jPanel3Layout.columnWeights = new double[] {0.1, 0.1, 0.1, 0.1};
 				jPanel3Layout.columnWidths = new int[] {7, 7, 7, 7};
 				pnlWagons.setLayout(jPanel3Layout);
-				pnlWagons.setBorder(BorderFactory.createEtchedBorder(BevelBorder.LOWERED));
+				pnlWagons.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 				{
 					tfCurrentTrain = new JTextField();
+					tfCurrentTrain.setBorder(null);
+					tfCurrentTrain.setBackground(SystemColor.menu);
 					tfCurrentTrain.setEditable(false);
 					pnlWagons.add(tfCurrentTrain, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.SOUTH, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
 					tfCurrentTrain.setText("selected: ");
@@ -177,12 +286,14 @@ public class PoorInterface extends javax.swing.JFrame implements ActionListener
 			}
 			{
 				jPanel2 = new JPanel();
+				jPanel2.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 				GridBagLayout jPanel2Layout = new GridBagLayout();
 				//jPanel2.setLayout(null);
 				jPanel2.setLayout(jPanel2Layout);
-				getContentPane().add(jPanel2, new GridBagConstraints(0, 2, 1, 1, 0.0, 0.0, GridBagConstraints.SOUTH, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 5), 0, 0));
+				getContentPane().add(jPanel2, new GridBagConstraints(0, 4, 1, 1, 0.0, 0.0, GridBagConstraints.SOUTH, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 5), 0, 0));
 				{
 					tpTextTrain = new JTextPane();
+					tpTextTrain.setBackground(SystemColor.menu);
 					tpTextTrain.setEditable(false);
 					jPanel2.add(tpTextTrain, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.SOUTH, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
 					jPanel2.setBounds(10, 10, 100, 15);
