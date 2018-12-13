@@ -17,7 +17,7 @@ public class Train {
 		observers = new ArrayList<Observer>();
 		allComponents = new ArrayList<Component>();
 		this.allComponents.add(ComponentFactory.getComponent("locomotive"));
-		Station.getInstance().addTrain(this);
+		TrainController.getInstance().addTrain(this);
 		
 	}
 	

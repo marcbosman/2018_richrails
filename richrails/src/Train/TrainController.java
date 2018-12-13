@@ -1,13 +1,13 @@
 package Train;
 
 import java.util.*;
-public class Station {
-	private static Station instance = new Station();
+public class TrainController {
+	private static TrainController instance = new TrainController();
 	private ArrayList<Train> Trains = new ArrayList<Train>();
 	
-	private Station() {};
+	private TrainController() {};
 	
-	public static Station getInstance() {
+	public static TrainController getInstance() {
 		return instance;
 	}
 	public void addTrain(Train train) {

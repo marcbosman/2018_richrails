@@ -55,24 +55,23 @@ public class SideViewObserver extends Observer {
 //		}
 	   
 	   public void drawLocomotive(Train train, JPanel drawPanel){
-		   // DRAW TRAIN METHOD
 			if (train.getName() != "")
 			{
-				NrofTrains = Station.getInstance().getNrofTrains();
+				NrofTrains = TrainController.getInstance().getNrofTrains();
 				Graphics g = drawPanel.getGraphics();
 				g.setColor(Color.LIGHT_GRAY);
 				//
-				g.fillRect(30,80+NrofTrains*OFFSET,80,40);
-				g.fillRect(80,60+NrofTrains*OFFSET,30,30);
+				g.fillRect(30,80-100+NrofTrains*OFFSET,80,40);
+				g.fillRect(80,60-100+NrofTrains*OFFSET,30,30);
 				
-				g.drawRoundRect(85, 40+NrofTrains*OFFSET, 20, 20, 20, 20);
-				g.drawRoundRect(85, NrofTrains*OFFSET, 40, 40, 40, 40);
+				g.drawRoundRect(85, 40-100+NrofTrains*OFFSET, 20, 20, 20, 20);
+				g.drawRoundRect(85, -100+NrofTrains*OFFSET, 40, 40, 40, 40);
 				g.setColor(Color.BLACK);
 				// WIELEN
-				g.fillRoundRect(35, 120+NrofTrains*OFFSET, 20, 20, 20, 20);
-				g.fillRoundRect(80, 120+NrofTrains*OFFSET, 20, 20, 20, 20);
+				g.fillRoundRect(35, 120-100+NrofTrains*OFFSET, 20, 20, 20, 20);
+				g.fillRoundRect(80, 120-100+NrofTrains*OFFSET, 20, 20, 20, 20);
 				// STRING TEXT
-				g.drawString(train.getName(),40,105+NrofTrains*OFFSET);
+				g.drawString(train.getName(),40,105-100+NrofTrains*OFFSET);
 			}
 	   }
 	   
