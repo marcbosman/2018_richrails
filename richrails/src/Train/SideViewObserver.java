@@ -29,7 +29,7 @@ public class SideViewObserver extends Observer {
 			    else if (c instanceof Wagon) { }
 			   
 		   }
-	     
+	     //test
 	   }
 	   
 //		public String addTrain(Train train, JComboBox cbAllTrains, HashMap numberOfWagons, int currentNumberOfWagons,
