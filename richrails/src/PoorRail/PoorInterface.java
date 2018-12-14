@@ -73,12 +73,14 @@ public class PoorInterface extends javax.swing.JFrame implements ActionListener
 	private int currentTrain = -1;
 	private int OFFSET = 100;
 	private int TRAINLENGTH = 100;
-	private JTextArea txtrTextArea;
-	private JTextArea txtrCmdOutput;
+	private JTextArea txtAreaCmd;
+	private JTextArea txtAreaCmdOutput;
 	private JPanel panel;
 	private JTextPane txtpnEnterCommand;
-	private JTextField textField;
+	private JTextField textFieldCommand;
 	private JButton btnSubmit;
+	
+	private final static String newline = "\n";
 
 	public PoorInterface() 
 	{
@@ -110,31 +112,29 @@ public class PoorInterface extends javax.swing.JFrame implements ActionListener
 				}
 			}
 			{
-				txtrTextArea = new JTextArea();
-				txtrTextArea.setSize(new Dimension(200, 0));
-				txtrTextArea.setEditable(false);
-				txtrTextArea.setText("CMD");
-				GridBagConstraints gbc_txtrTextArea = new GridBagConstraints();
-				gbc_txtrTextArea.insets = new Insets(0, 0, 5, 5);
-				gbc_txtrTextArea.fill = GridBagConstraints.BOTH;
-				gbc_txtrTextArea.gridx = 0;
-				gbc_txtrTextArea.gridy = 2;
-				getContentPane().add(txtrTextArea, gbc_txtrTextArea);
+				txtAreaCmd = new JTextArea();
+				txtAreaCmd.setSize(new Dimension(200, 0));
+				txtAreaCmd.setEditable(false);
+				GridBagConstraints gbc_txtAreaCmd = new GridBagConstraints();
+				gbc_txtAreaCmd.insets = new Insets(0, 0, 5, 5);
+				gbc_txtAreaCmd.fill = GridBagConstraints.BOTH;
+				gbc_txtAreaCmd.gridx = 0;
+				gbc_txtAreaCmd.gridy = 2;
+				getContentPane().add(txtAreaCmd, gbc_txtAreaCmd);
 			}
 			{
-				txtrCmdOutput = new JTextArea();
-				txtrCmdOutput.setForeground(Color.WHITE);
-				txtrCmdOutput.setDisabledTextColor(Color.WHITE);
-				txtrCmdOutput.setBackground(Color.BLACK);
-				txtrCmdOutput.setEditable(false);
-				txtrCmdOutput.setText("CMD Output");
-				GridBagConstraints gbc_txtrCmdOutput = new GridBagConstraints();
-				gbc_txtrCmdOutput.gridheight = 2;
-				gbc_txtrCmdOutput.insets = new Insets(0, 0, 5, 0);
-				gbc_txtrCmdOutput.fill = GridBagConstraints.BOTH;
-				gbc_txtrCmdOutput.gridx = 1;
-				gbc_txtrCmdOutput.gridy = 2;
-				getContentPane().add(txtrCmdOutput, gbc_txtrCmdOutput);
+				txtAreaCmdOutput = new JTextArea();
+				txtAreaCmdOutput.setForeground(Color.WHITE);
+				txtAreaCmdOutput.setDisabledTextColor(Color.WHITE);
+				txtAreaCmdOutput.setBackground(Color.BLACK);
+				txtAreaCmdOutput.setEditable(false);
+				GridBagConstraints gbc_txtAreaCmdOutput = new GridBagConstraints();
+				gbc_txtAreaCmdOutput.gridheight = 2;
+				gbc_txtAreaCmdOutput.insets = new Insets(0, 0, 5, 0);
+				gbc_txtAreaCmdOutput.fill = GridBagConstraints.BOTH;
+				gbc_txtAreaCmdOutput.gridx = 1;
+				gbc_txtAreaCmdOutput.gridy = 2;
+				getContentPane().add(txtAreaCmdOutput, gbc_txtAreaCmdOutput);
 			}
 			{
 				panel = new JPanel();
@@ -172,25 +172,29 @@ public class PoorInterface extends javax.swing.JFrame implements ActionListener
 					panel.add(txtpnEnterCommand, gbc_txtpnEnterCommand);
 				}
 				{
-					textField = new JTextField(20);
-					GridBagConstraints gbc_textField = new GridBagConstraints();
-					gbc_textField.weighty = 0.0;
-					gbc_textField.weightx = 0.0;
-					gbc_textField.ipady = 0;
-					gbc_textField.ipadx = 0;
-					gbc_textField.gridwidth = 1;
-					gbc_textField.gridheight = 1;
-					gbc_textField.fill = GridBagConstraints.NONE;
-					gbc_textField.anchor = GridBagConstraints.SOUTH;
-					gbc_textField.insets = new Insets(0, 0, 0, 5);
-					gbc_textField.gridx = 1;
-					gbc_textField.gridy = 0;
-					panel.add(textField, gbc_textField);
+					textFieldCommand = new JTextField(20);
+					GridBagConstraints gbc_textFieldCommand = new GridBagConstraints();
+					gbc_textFieldCommand.weighty = 0.0;
+					gbc_textFieldCommand.weightx = 0.0;
+					gbc_textFieldCommand.ipady = 0;
+					gbc_textFieldCommand.ipadx = 0;
+					gbc_textFieldCommand.gridwidth = 1;
+					gbc_textFieldCommand.gridheight = 1;
+					gbc_textFieldCommand.fill = GridBagConstraints.NONE;
+					gbc_textFieldCommand.anchor = GridBagConstraints.SOUTH;
+					gbc_textFieldCommand.insets = new Insets(0, 0, 0, 5);
+					gbc_textFieldCommand.gridx = 1;
+					gbc_textFieldCommand.gridy = 0;
+					panel.add(textFieldCommand, gbc_textFieldCommand);
 				}
 				{
 					btnSubmit = new JButton();
 					btnSubmit.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent arg0) {
+							String command = textFieldCommand.getText();
+							txtAreaCmd.append(command + newline);
+							txtAreaCmdOutput.append("Action submitted" + newline);
+							textFieldCommand.setText("");
 						}
 					});
 					btnSubmit.setText("Submit");
@@ -339,6 +343,10 @@ public class PoorInterface extends javax.swing.JFrame implements ActionListener
 				{
 					Train train = new Train(trainName);
 					cbAllTrains.addItem(train);
+
+					txtAreaCmd.append("add train " + train.getName() + newline);
+					txtAreaCmdOutput.append("Train " + train.getName() + " added. Choo choooo!" + newline);
+					textFieldCommand.setText("");
 //					currentTrain = cbAllTrains.getSelectedIndex();
 //					svo.addTrain(train, cbAllTrains, numberOfWagons, currentNumberOfWagons, currentTrain);
 //					svo.drawLocomotive(train, drawPanel);
@@ -355,6 +363,10 @@ public class PoorInterface extends javax.swing.JFrame implements ActionListener
 			{
 				Train selection = (Train)cbAllTrains.getSelectedItem();
 				tfCurrentTrain.setText("selected: " + selection.getName());
+				
+				txtAreaCmd.append("select train " + selection.getName() + newline);
+				txtAreaCmdOutput.append("Train " + selection.getName() + " selected. Now what?" + newline);
+				textFieldCommand.setText("");
 //				int ti = cbAllTrains.getSelectedIndex();
 //				if (ti != currentTrain)
 //				{
