@@ -7,13 +7,14 @@ import javax.swing.JPanel;
 
 import PoorRail.PoorInterface;
 
-public class SideViewObserver extends Observer {
+public class SideViewObserver implements Observer {
 	
 	private int NrofTrains;
 	private int OFFSET = 100;
 	private int TRAINLENGTH = 100;
 	private int NrofWagons;
 	private JPanel Panel;
+	private Train train;
 	
 	public SideViewObserver(Train train){
 	      this.train= train;

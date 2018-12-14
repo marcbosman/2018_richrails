@@ -8,18 +8,14 @@ public class Train {
 	private int trainID;
 	private ArrayList<Observer> observers = new ArrayList<Observer>();
 	
-	//Bij het aanmaken van een train wordt een locomotive toegevoegd. Hiervoor moet eerst een ComponentFactory geinstantieerd worden.
-	//Dit is een hele brakke oplossing
-	// to-do
+	
 	public Train(String name) {
-		ComponentFactory ComponentFactory = new ComponentFactory();
 		this.name = name;
 		allComponents = new ArrayList<Component>();
 		new SideViewObserver(this);
 		this.addComponent(ComponentFactory.getComponent("locomotive"));
 		TrainController.getInstance().addTrain(this);
-		
-		
+			
 	}
 	
 	public void addComponent(Component c) {

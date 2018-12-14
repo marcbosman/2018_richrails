@@ -3,7 +3,7 @@ package Train;
 public class ComponentFactory {
 	
 	   //use getComponent method to get object of type component
-	   public Component getComponent(String componentType){
+	   public static Component getComponent(String componentType){
 	      if(componentType == null){
 	         return null;
 	      }		
