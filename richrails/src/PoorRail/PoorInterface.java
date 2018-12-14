@@ -80,7 +80,6 @@ public class PoorInterface extends javax.swing.JFrame implements ActionListener
 	private JTextField textField;
 	private JButton btnSubmit;
 
-
 	public PoorInterface() 
 	{
 		super();
@@ -334,7 +333,7 @@ public class PoorInterface extends javax.swing.JFrame implements ActionListener
 		{
 			// NEW TRAIN BUTTON
 			
-			{
+			
 				String trainName = tfNewTrain.getText();
 				if (trainName != null && trainName.trim().length()>0)
 				{
@@ -346,26 +345,16 @@ public class PoorInterface extends javax.swing.JFrame implements ActionListener
 				}
 			
 			
-			
-//			String trainName = tfNewTrain.getText();
-//			if (trainName != null && trainName.trim().length()>0)
-//			{
-//				Train train = new Train(trainName);
-//				SideViewObserver svo = new SideViewObserver(train);
-//				currentTrain = cbAllTrains.getSelectedIndex();
-//				svo.drawLocomotive(train, drawPanel, currentTrain, OFFSET);
-//				System.out.println(train.getName());
-//				
-			}
+
 		}
 		else if (event.getSource() == btnChooseTrain)
 		{
 			// SELECT TRAIN BUTTON
 //			
-//			if (cbAllTrains.getItemCount() > 0)
-//			{
-//				String selection = (String)cbAllTrains.getSelectedItem();
-//				tfCurrentTrain.setText("selected: " + selection);
+			if (cbAllTrains.getItemCount() > 0)
+			{
+				Train selection = (Train)cbAllTrains.getSelectedItem();
+				tfCurrentTrain.setText("selected: " + selection.getName());
 //				int ti = cbAllTrains.getSelectedIndex();
 //				if (ti != currentTrain)
 //				{
@@ -380,7 +369,7 @@ public class PoorInterface extends javax.swing.JFrame implements ActionListener
 //				{
 //					currentNumberOfWagons = 0;
 //				}			
-//			}
+			}
 		}
 		else if (event.getSource() == btnDeleteTrain)
 		{
