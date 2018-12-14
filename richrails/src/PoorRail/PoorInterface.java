@@ -62,7 +62,7 @@ public class PoorInterface extends javax.swing.JFrame implements ActionListener
 	private JTextField tfCurrentTrain;
 	private JButton btnDeleteTrain;
 	private JButton btnChooseTrain;
-	private JComboBox cbAllTrains;
+	private JComboBox<Train> cbAllTrains;
 	private JButton btnNewTrain;
 	private JTextField tfNewTrain;
 	private JPanel jPanel2;
@@ -80,27 +80,7 @@ public class PoorInterface extends javax.swing.JFrame implements ActionListener
 	private JTextField textField;
 	private JButton btnSubmit;
 
-	/**
-	* Auto-generated main method to display this JFrame
-	*/
-	public static void main(String[] args) 
-	{
-		SwingUtilities.invokeLater(new Runnable() 
-		{
-			public void run() 
-			{
-				PoorInterface inst = new PoorInterface();
-				inst.setExtendedState(JFrame.MAXIMIZED_BOTH); 
-//				inst.setUndecorated(true);
-				inst.setVisible(true);
-//				inst.setLocationRelativeTo(null);
-//				inst.setVisible(true);
-//			    inst.getContentPane().setPreferredSize(new Dimension(1000, 1000));
-//			    inst.pack();
-			}
-		});
-	}
-	
+
 	public PoorInterface() 
 	{
 		super();
