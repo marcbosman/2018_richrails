@@ -85,22 +85,17 @@ public class SideViewObserver implements Observer {
 				g.drawString(train.getName(),40,105+NrofTrains*OFFSET);
 			}
 
-	@Override
-	public void drawWagon(Wagon wagon, JPanel drawPanel) {
-		// TODO Auto-generated method stub
-		
-	}
 	   	   
-//	   public void drawWagon(Wagon wagon, JPanel drawPanel){
-//		    Graphics g = drawPanel.getGraphics();
-//		    NrofWagons = ;
-//			g.setColor(Color.LIGHT_GRAY);
-//			g.fillRect(30+currentNumberOfWagons*TRAINLENGTH,80+currentTrain*OFFSET,80,40);
-//			g.setColor(Color.BLACK);
-//			g.fillRoundRect(35+currentNumberOfWagons*TRAINLENGTH, 120+currentTrain*OFFSET, 20, 20, 20, 20);
-//			g.fillRoundRect(80+currentNumberOfWagons*TRAINLENGTH, 120+currentTrain*OFFSET, 20, 20, 20, 20);
-//			g.drawString(wagon,40+currentNumberOfWagons*TRAINLENGTH,105+currentTrain*OFFSET);
-//	   }
+	   public void drawWagon(JPanel drawPanel){
+		    Graphics g = drawPanel.getGraphics();
+		    NrofWagons = 0;
+			g.setColor(Color.LIGHT_GRAY);
+			g.fillRect(30+TrainController.getInstance().getTrain(train.getName()).currentNumberOfWagons()*TRAINLENGTH,80+currentTrain*OFFSET,80,40);
+			g.setColor(Color.BLACK);
+			g.fillRoundRect(35+TrainController.getInstance().getTrain(train.getName()).currentNumberOfWagons()*TRAINLENGTH, 120+currentTrain*OFFSET, 20, 20, 20, 20);
+			g.fillRoundRect(80+TrainController.getInstance().getTrain(train.getName()).currentNumberOfWagons()*TRAINLENGTH, 120+currentTrain*OFFSET, 20, 20, 20, 20);
+			g.drawString(wagon,40+TrainController.getInstance().getTrain(train.getName()).currentNumberOfWagons()*TRAINLENGTH,105+currentTrain*OFFSET);
+	   }
 
 
 }

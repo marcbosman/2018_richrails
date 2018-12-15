@@ -28,6 +28,16 @@ public class TrainController {
 		return Trains.size();
 	}
 	
+	public Train getTrain(String name) {
+		Train tr = null;
+		for (Train t: Trains) {
+			if (t.getName() == name) {
+				tr = t;
+			}
+		}
+		return tr;
+	}
+	
 	public int getTrainIndex(Train train) {
 		for (Train t: Trains)
 		{
