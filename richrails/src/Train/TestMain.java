@@ -13,12 +13,7 @@ public class TestMain {
 			{
 				PoorInterface inst = new PoorInterface();
 				inst.setExtendedState(JFrame.MAXIMIZED_BOTH); 
-//				inst.setUndecorated(true);
 				inst.setVisible(true);
-//				inst.setLocationRelativeTo(null);
-//				inst.setVisible(true);
-//			    inst.getContentPane().setPreferredSize(new Dimension(1000, 1000));
-//			    inst.pack();
 			}
 		});
 		
