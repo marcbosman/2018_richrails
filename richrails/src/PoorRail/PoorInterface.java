@@ -191,12 +191,13 @@ public class PoorInterface extends javax.swing.JFrame implements ActionListener
 					btnSubmit = new JButton();
 					btnSubmit.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent arg0) {
-//							String command = textFieldCommand.getText();
-//							txtAreaCmd.append(command + newline);
-//							txtAreaCmdOutput.append("Action submitted" + newline);
-//							textFieldCommand.setText("");
-							drawPanel.removeAll();
-							drawPanel.updateUI();
+							String command = textFieldCommand.getText();
+							txtAreaCmd.append(command + newline);
+							txtAreaCmdOutput.append("Action submitted" + newline);
+							textFieldCommand.setText("");
+							// BLANK CANVAS
+//							drawPanel.removeAll();
+//							drawPanel.updateUI();
 						}
 					});
 					btnSubmit.setText("Submit");
