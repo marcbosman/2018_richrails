@@ -4,6 +4,8 @@ import java.util.*;
 public class TrainController {
 	private static TrainController instance = new TrainController();
 	private ArrayList<Train> Trains = new ArrayList<Train>();
+	private ArrayList<Wagon> Wagons = new ArrayList<Wagon>();
+	private ArrayList<Locomotive> Locomotives = new ArrayList<Locomotive>();
 	
 	private TrainController() {};
 	
@@ -14,15 +16,43 @@ public class TrainController {
 		this.Trains.add(train);
 	}
 	
+	public void addWagon(Wagon wagon) {
+		this.Wagons.add(wagon);
+	}
+	
+	public void addLocomotive(Locomotive Locomotive) {
+		this.Locomotives.add(Locomotive);
+	}
+	
 	public int getNrofTrains() {
 		return Trains.size();
 	}
 	
-	public int getIndex(Train train) {
+	public int getTrainIndex(Train train) {
 		for (Train t: Trains)
 		{
 			if (t.getName() == train.getName()) {
 				return Trains.indexOf(t);
+			}
+		}
+		return 0;
+	}
+	
+	public int getWagonIndex(Wagon wagon) {
+		for (Wagon w: Wagons)
+		{
+			if (w.getName() == wagon.getName()) {
+				return Trains.indexOf(w);
+			}
+		}
+		return 0;
+	}
+	
+	public int getLocomotiveIndex(Locomotive loco) {
+		for (Locomotive l: Locomotives)
+		{
+			if (l.getName() == loco.getName()) {
+				return Trains.indexOf(l);
 			}
 		}
 		return 0;

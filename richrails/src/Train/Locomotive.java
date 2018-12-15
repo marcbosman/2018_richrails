@@ -6,7 +6,8 @@ public class Locomotive implements Component {
 	private int horsePower = 200;
 	
 	public Locomotive(String nm)
-	{name = nm;}
+	{name = nm;
+	TrainController.getInstance().addLocomotive(this);}
 	
 	public Locomotive(int horsePower) {
 		this.horsePower = horsePower;

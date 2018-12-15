@@ -6,7 +6,8 @@ public class Wagon implements Component {
 	private int seats;
 	
 	public Wagon(String nm)
-	{name = nm;}
+	{name = nm;
+	TrainController.getInstance().addWagon(this);}
 	
 	public Wagon(int seats) {
 		this.seats = seats;
