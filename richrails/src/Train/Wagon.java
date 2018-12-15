@@ -12,12 +12,6 @@ public class Wagon implements Component {
 		this.seats = seats;
 	}
 	
-	//Dit gebruiken we niet
-//	@Override
-//	public Component createComponent() {
-//		return new Wagon();
-//	}
-	
 	public String getName() {
 		return name;
 	}

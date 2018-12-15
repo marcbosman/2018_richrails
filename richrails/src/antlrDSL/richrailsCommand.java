@@ -1,26 +1,34 @@
 package antlrDSL;
 
 import PoorRail.PoorInterface;
-import Train.Train;
+import Train.*;
 import antlrDSL.richrailsParser.GetcommandContext;
 
 public class richrailsCommand extends richrailsBaseListener {
 	
 	@Override public void enterCommand(richrailsParser.CommandContext ctx) 
 	{ 
-	PoorInterface.setCMDOutput("Command Entered");
+	
 	}
 	
 	@Override public void enterNewcommand(richrailsParser.NewcommandContext ctx) 
 	{
+		if (ctx.getText().toLowerCase().contains("train")) {
+			Train train = new Train(ctx.getText().toLowerCase().split("newtrain")[1]);
+			PoorInterface.setCMDOutput("New train " + ctx.getText().toLowerCase().split("newtrain")[1] + " added" );
+			}
+		else if (ctx.getText().toLowerCase().contains("wagon")) {
+			ComponentFactory.getComponent("wagon");
+			PoorInterface.setCMDOutput("New wagon " + ctx.getText().toLowerCase().split("newwagon")[1] + " created");
+		}
 			
-		Train train = new Train(ctx.getText().toLowerCase().split("newtrain")[1]);
-		PoorInterface.setCMDOutput("New train " + ctx.getText().toLowerCase().split("newtrain")[1] + " added" );
+		
 	}
 
 	@Override public void enterAddcommand(richrailsParser.AddcommandContext ctx) 
 	{
 		System.out.println("Now adding train/wagon " + ctx.getText());
+		
 	}
 	
 	@Override public void enterGetcommand(richrailsParser.GetcommandContext ctx) 
