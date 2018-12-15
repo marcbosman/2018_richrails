@@ -223,6 +223,14 @@ public class PoorInterface extends javax.swing.JFrame implements ActionListener
 					        walker.walk(listener, commandContext);
 							drawPanel.removeAll();
 							drawPanel.updateUI();
+							String command = textFieldCommand.getText();
+							txtAreaCmd.append(command + newline);
+							txtAreaCmdOutput.append("Action submitted" + newline);
+							textFieldCommand.setText("");
+							// BLANK CANVAS
+//							drawPanel.removeAll();
+//							drawPanel.updateUI();
+							//github.com/marcbosman/2018_richrails
 						}
 					});
 					btnSubmit.setText("Submit");
