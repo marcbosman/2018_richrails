@@ -1,5 +1,6 @@
 package antlrDSL;
 
+import PoorRail.PoorInterface;
 import Train.Train;
 import antlrDSL.richrailsParser.GetcommandContext;
 
@@ -7,13 +8,14 @@ public class richrailsCommand extends richrailsBaseListener {
 	
 	@Override public void enterCommand(richrailsParser.CommandContext ctx) 
 	{ 
-		System.out.println("Command entered " + ctx.getText());
+	PoorInterface.setCMDOutput("Command Entered");
 	}
 	
 	@Override public void enterNewcommand(richrailsParser.NewcommandContext ctx) 
 	{
 			
 		Train train = new Train(ctx.getText().toLowerCase().split("newtrain")[1]);
+		PoorInterface.setCMDOutput("New train " + ctx.getText().toLowerCase().split("newtrain")[1] + " added" );
 	}
 
 	@Override public void enterAddcommand(richrailsParser.AddcommandContext ctx) 

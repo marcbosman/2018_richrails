@@ -84,7 +84,7 @@ public class PoorInterface extends javax.swing.JFrame implements ActionListener
 	private int OFFSET = 100;
 	private int TRAINLENGTH = 100;
 	private JTextArea txtAreaCmd;
-	private JTextArea txtAreaCmdOutput;
+	private static JTextArea txtAreaCmdOutput;
 	private JPanel panel;
 	private JTextPane txtpnEnterCommand;
 	private JTextField textFieldCommand;
@@ -225,7 +225,6 @@ public class PoorInterface extends javax.swing.JFrame implements ActionListener
 //							drawPanel.updateUI();
 							String command = textFieldCommand.getText();
 							txtAreaCmd.append(command + newline);
-							txtAreaCmdOutput.append("Action submitted" + newline);
 							textFieldCommand.setText("");
 							// BLANK CANVAS
 //							drawPanel.removeAll();
@@ -551,4 +550,10 @@ public class PoorInterface extends javax.swing.JFrame implements ActionListener
 	public static JPanel getdrawPanel() {
 		return drawPanel;
 	}
+	
+	public static void setCMDOutput(String output) {
+		txtAreaCmdOutput.append(output + newline);
+	}
 }
+
+
