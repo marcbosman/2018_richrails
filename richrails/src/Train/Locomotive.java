@@ -5,8 +5,8 @@ public class Locomotive implements Component {
 	private int LocomotiveId;
 	private int horsePower = 200;
 	
-	public Locomotive()
-	{}
+	public Locomotive(String nm)
+	{name = nm;}
 	
 	public Locomotive(int horsePower) {
 		this.horsePower = horsePower;

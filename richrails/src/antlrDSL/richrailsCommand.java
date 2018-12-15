@@ -13,13 +13,14 @@ public class richrailsCommand extends richrailsBaseListener {
 	
 	@Override public void enterNewcommand(richrailsParser.NewcommandContext ctx) 
 	{
-		if (ctx.getText().toLowerCase().contains("train")) {
+		if (ctx.getText().toLowerCase().startsWith("newtrain")) {
 			Train train = new Train(ctx.getText().toLowerCase().split("newtrain")[1]);
 			PoorInterface.setCMDOutput("New train " + ctx.getText().toLowerCase().split("newtrain")[1] + " added" );
 			}
-		else if (ctx.getText().toLowerCase().contains("wagon")) {
-			ComponentFactory.getComponent("wagon");
+		else if (ctx.getText().toLowerCase().startsWith("newwagon")) {
+			ComponentFactory.getComponent("wagon", ctx.getText().toLowerCase().split("newwagon")[1] );
 			PoorInterface.setCMDOutput("New wagon " + ctx.getText().toLowerCase().split("newwagon")[1] + " created");
+			
 		}
 			
 		

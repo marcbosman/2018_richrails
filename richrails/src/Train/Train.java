@@ -13,7 +13,7 @@ public class Train {
 		this.name = name;
 		allComponents = new ArrayList<Component>();
 		new SideViewObserver(this);
-		this.addComponent(ComponentFactory.getComponent("locomotive"));
+		this.addComponent(ComponentFactory.getComponent("locomotive", name));
 		TrainController.getInstance().addTrain(this);
 			
 	}
