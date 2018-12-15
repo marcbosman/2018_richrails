@@ -1,5 +1,6 @@
 package antlrDSL;
 
+import Train.Train;
 import antlrDSL.richrailsParser.GetcommandContext;
 
 public class richrailsCommand extends richrailsBaseListener {
@@ -11,7 +12,8 @@ public class richrailsCommand extends richrailsBaseListener {
 	
 	@Override public void enterNewcommand(richrailsParser.NewcommandContext ctx) 
 	{
-		System.out.println("Now creating new train " + ctx.getText());
+			
+		Train train = new Train(ctx.getText().toLowerCase().split("newtrain")[1]);
 	}
 
 	@Override public void enterAddcommand(richrailsParser.AddcommandContext ctx) 
