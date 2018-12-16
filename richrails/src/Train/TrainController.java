@@ -31,7 +31,7 @@ public class TrainController {
 	public Train getTrain(String name) {
 		Train tr = null;
 		for (Train t: Trains) {
-			if (t.getName() == name) {
+			if (t.getName().equals(name)) {
 				tr = t;
 			}
 		}
@@ -71,7 +71,7 @@ public class TrainController {
 	public Wagon getWagon(String name) {
 		Wagon wa = null;
 		for (Wagon w: Wagons) {
-			if (w.getName() == name) {
+			if (w.getName().equals(name)) {
 				wa = w;
 			}
 		}
