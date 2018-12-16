@@ -101,6 +101,8 @@ public class SideViewObserver implements Observer {
 			g.fillRoundRect(35+TrainController.getInstance().getTrain(train.getName()).currentNumberOfWagons()*TRAINLENGTH-100, 120+TrainController.getInstance().getTrainIndex(train)*OFFSET, 20, 20, 20, 20);
 			g.fillRoundRect(80+TrainController.getInstance().getTrain(train.getName()).currentNumberOfWagons()*TRAINLENGTH-100, 120+TrainController.getInstance().getTrainIndex(train)*OFFSET, 20, 20, 20, 20);
 			g.drawString(Wagonname,40+TrainController.getInstance().getTrain(train.getName()).currentNumberOfWagons()*TRAINLENGTH-100,105+TrainController.getInstance().getTrainIndex(train)*OFFSET);
+			System.out.println(TrainController.getInstance().getTrain(train.getName()).currentNumberOfWagons());
+			System.out.println(TrainController.getInstance().getTrain(train.getName()).getAllComponents());
 	   }
 
 

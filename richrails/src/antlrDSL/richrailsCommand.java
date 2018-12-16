@@ -37,8 +37,15 @@ public class richrailsCommand extends richrailsBaseListener {
 	{
 			String compname = ctx.getChild(1).getText();
 			String trainname = ctx.getChild(3).getText();
-			TrainController.getInstance().getTrain(trainname).addComponent(TrainController.getInstance().getWagon(compname));
-			PoorInterface.setCMDOutput("Wagon " + compname + " added to train " + trainname);
+			for (Wagon w: TrainController.getInstance().getAllWagons()) {
+				if (w.getName().equalsIgnoreCase(compname)) {
+					TrainController.getInstance().getTrain(trainname).addComponent(TrainController.getInstance().getWagon(compname));
+					PoorInterface.setCMDOutput("Wagon " + compname + " added to train " + trainname);
+				}
+				else {
+					PoorInterface.setCMDOutput("Wagon " + compname + " does not exist");
+				}
+			}
 	
 	}
 	
