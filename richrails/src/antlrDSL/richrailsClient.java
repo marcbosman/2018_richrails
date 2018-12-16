@@ -8,6 +8,7 @@ import org.antlr.v4.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 
+@SuppressWarnings("unused")
 public class richrailsClient {
     public static void main(String[] args) throws Exception {
 

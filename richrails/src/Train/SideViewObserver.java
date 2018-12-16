@@ -67,7 +67,6 @@ public class SideViewObserver implements Observer {
 	   	   
 	   public void drawWagon(JPanel drawPanel){
 		    Graphics g = drawPanel.getGraphics();
-		    NrofWagons = 0;
 			g.setColor(Color.LIGHT_GRAY);
 			// Draw the body
 			g.fillRect(30+TrainController.getInstance().getTrain(train.getName()).currentNumberOfWagons()*TRAINLENGTH-100,80+TrainController.getInstance().getTrainIndex(train)*OFFSET,80,40);

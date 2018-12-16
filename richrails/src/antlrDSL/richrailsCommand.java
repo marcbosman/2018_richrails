@@ -4,6 +4,7 @@ import GUI.PoorInterface;
 import Train.*;
 import antlrDSL.richrailsParser.GetcommandContext;
 
+@SuppressWarnings("unused")
 public class richrailsCommand extends richrailsBaseListener {
 	
 	@Override public void enterCommand(richrailsParser.CommandContext ctx) 
@@ -41,9 +42,6 @@ public class richrailsCommand extends richrailsBaseListener {
 					TrainController.getInstance().getTrain(trainname).addComponent(TrainController.getInstance().getWagon(compname));
 					PoorInterface.setCMDOutput("Wagon " + compname + " added to train " + trainname);
 					break;
-				}
-				else {
-					PoorInterface.setCMDOutput("Wagon " + compname + " does not exist");
 				}
 			}
 	}

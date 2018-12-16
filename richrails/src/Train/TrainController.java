@@ -72,7 +72,7 @@ public class TrainController {
 		for (Wagon w: Wagons)
 		{
 			if (w.getName() == wagon.getName()) {
-				return Trains.indexOf(w);
+				return Wagons.indexOf(w);
 			}
 		}
 		return 0;
@@ -82,7 +82,7 @@ public class TrainController {
 		for (Locomotive l: Locomotives)
 		{
 			if (l.getName() == loco.getName()) {
-				return Trains.indexOf(l);
+				return Locomotives.indexOf(l);
 			}
 		}
 		return 0;
