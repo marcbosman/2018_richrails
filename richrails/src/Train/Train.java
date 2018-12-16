@@ -44,24 +44,33 @@ public class Train {
 		return trainID;
 	}
 	
-	public void newTrain(String name) {
-		Train tr = new Train(name);
-	}
-	
 	public ArrayList<Component> getState(){
 		return allComponents;
 	}
 	
 	 public void attach(Observer observer){
 	      observers.add(observer);		
-	   }
+	 }
 
-	   public void notifyAllObservers(){
-	      for (Observer observer : observers) {
-	         observer.update();
-	      }
-	   }
-
+	 public void notifyAllObservers(){
+	    for (Observer observer : observers) {
+	       observer.update();
+	    }
+	 }
+	 
+//	public Wagon getWagon(String name) {
+//		Wagon wa = null;
+//		for (Component c: allComponents) {
+//			if (c instanceof Wagon) { 
+//				if (((Wagon) c).getName().equals(name)) {
+//					wa = (Wagon) c;
+//				}
+//			}
+//		}
+//		return wa;
+//	}
+	   
+	   
 	public int calculateSeats() {
 		//todo
 		return 0;
