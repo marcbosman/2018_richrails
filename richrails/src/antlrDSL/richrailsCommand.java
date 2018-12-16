@@ -29,6 +29,11 @@ public class richrailsCommand extends richrailsBaseListener {
 	@Override public void enterAddcommand(richrailsParser.AddcommandContext ctx) 
 	{
 		System.out.println("Now adding train/wagon " + ctx.getText());
+		String compname = ctx.getText().toLowerCase().substring(3).split("to")[0];
+		System.out.println(compname);
+		String trainname = ctx.getText().toLowerCase().split("to")[1];
+		System.out.println(trainname);
+//		TrainController.getInstance().getTrain(trainname).addComponent(TrainController.getInstance().getWagon(compname));;
 		
 	}
 	

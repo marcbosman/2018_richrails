@@ -67,4 +67,14 @@ public class TrainController {
 		}
 		return 0;
 	}
+	
+	public Wagon getWagon(String name) {
+		Wagon wa = null;
+		for (Wagon w: Wagons) {
+			if (w.getName() == name) {
+				wa = w;
+			}
+		}
+		return wa;
+	}
 }
