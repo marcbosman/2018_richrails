@@ -5,7 +5,7 @@ import java.awt.Graphics;
 
 import javax.swing.JPanel;
 
-import PoorRail.PoorInterface;
+import GUI.PoorInterface;
 
 public class SideViewObserver implements Observer {
 	
@@ -38,7 +38,7 @@ public class SideViewObserver implements Observer {
 							
 			}
 	   }
-//	   
+  
 //	   public void update() {
 //		   this.Panel = PoorInterface.getdrawPanel();
 //		   for (Component c : train.getState()) {
@@ -46,40 +46,6 @@ public class SideViewObserver implements Observer {
 //			    else if (c instanceof Wagon) { drawWagon(Panel); }
 //			   }
 //			}
-//	   
-//		public String addTrain(Train train, JComboBox cbAllTrains, HashMap numberOfWagons, int currentNumberOfWagons,
-//				int currentTrain) {
-//		{
-//			String t = "";
-//			try
-//			{
-//				t = train.getName().trim();
-//				for (int i = 0; i < cbAllTrains.getItemCount();i++ )
-//				{
-//					String cbTrain = (String)cbAllTrains.getItemAt(i);
-//					if (cbTrain.equalsIgnoreCase(t))
-//					{
-//						t = "";
-//						break;
-//					}
-//				}
-//				if (t != "")
-//				{
-//					if (currentTrain >= 0)
-//					{
-//						numberOfWagons.put(currentTrain,currentNumberOfWagons);
-//					}
-//					cbAllTrains.addItem(t);
-//					cbAllTrains.setSelectedItem(t);
-//					numberOfWagons.put(t, 0);
-//				}
-//			}
-//			catch (Exception e)
-//			{
-//			}
-//			return t;
-//		}
-//		}
 	   
 	   public void drawLocomotive(JPanel drawPanel){
 				NrofTrains = TrainController.getInstance().getNrofTrains();

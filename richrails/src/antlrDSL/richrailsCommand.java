@@ -1,6 +1,6 @@
 package antlrDSL;
 
-import PoorRail.PoorInterface;
+import GUI.PoorInterface;
 import Train.*;
 import antlrDSL.richrailsParser.GetcommandContext;
 

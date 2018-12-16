@@ -12,12 +12,6 @@ public class CargoWagon implements Component {
 		this.capacity = capacity;
 	}
 	
-	//Dit gebruiken we niet
-//	@Override
-//	public Component createComponent() {
-//		return new Wagon();
-//	}
-	
 	public String getName() {
 		return name;
 	}
