@@ -24,7 +24,10 @@ public class SideViewObserver implements Observer {
 	   @Override
 	   public void update() {
 		   this.Panel = PoorInterface.getdrawPanel();
-		   Panel.removeAll();
+		   Graphics g = Panel.getGraphics();
+		   g.setColor(Color.BLACK);
+		   g.fillRect(0, 0, 500, 500);
+//		   Panel.removeAll();
 //		   Panel.updateUI();
 		   for (Component c : train.getState()) {
 //			   System.out.println(train.getState());
