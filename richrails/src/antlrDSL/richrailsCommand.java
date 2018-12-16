@@ -38,7 +38,7 @@ public class richrailsCommand extends richrailsBaseListener {
 		Component c1 = TrainController.getInstance().getWagon(compname);
 		System.out.println(c1);
 		tr1.addComponent(c1);
-//		TrainController.getInstance().getTrain(trainname).addComponent(TrainController.getInstance().getWagon(compname));;
+		TrainController.getInstance().getTrain(trainname).addComponent(TrainController.getInstance().getWagon(compname));;
 		
 	}
 	

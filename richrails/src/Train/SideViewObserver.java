@@ -24,12 +24,13 @@ public class SideViewObserver implements Observer {
 	   @Override
 	   public void update() {
 		   this.Panel = PoorInterface.getdrawPanel();
-//		   Panel.removeAll();
+		   Panel.removeAll();
 //		   Panel.updateUI();
 		   for (Component c : train.getState()) {
+			   System.out.println(train.getState());
 			    if (c instanceof Locomotive) { drawLocomotive(Panel);}
 			    
-			    else if (c instanceof Wagon) { drawWagon(Panel); }
+			    else if (c instanceof Wagon) { drawWagon(Panel);}
 			   
 		   }
 	     //test
