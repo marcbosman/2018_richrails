@@ -35,8 +35,8 @@ public class richrailsCommand extends richrailsBaseListener {
 
 	@Override public void enterAddcommand(richrailsParser.AddcommandContext ctx) 
 	{
-			String compname = ctx.getText().toLowerCase().substring(3).split("to")[0];
-			String trainname = ctx.getText().toLowerCase().split("to")[1];
+			String compname = ctx.getChild(0).getChild(1).getText();
+			String trainname = ctx.getChild(0).getChild(3).getText();
 			TrainController.getInstance().getTrain(trainname).addComponent(TrainController.getInstance().getWagon(compname));
 			PoorInterface.setCMDOutput("Wagon " + compname + " added to train " + trainname);
 	
