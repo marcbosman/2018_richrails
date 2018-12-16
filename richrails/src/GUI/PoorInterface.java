@@ -51,7 +51,7 @@ public class PoorInterface extends javax.swing.JFrame
 		initGUI();
 	}
 	
-	private void initGUI() 
+	private void initGUI() 	// Render the GUI
 	{
 		try 
 		{
@@ -163,10 +163,10 @@ public class PoorInterface extends javax.swing.JFrame
 				{
 					btnSubmit = new JButton();
 					
-					btnSubmit.addActionListener(new ActionListener() {
+					btnSubmit.addActionListener(new ActionListener() {							
 						public void actionPerformed(ActionEvent arg0) {
-							CharStream is = CharStreams.fromString(textFieldCommand.getText());
-						      try {
+							CharStream is = CharStreams.fromString(textFieldCommand.getText());		
+						      try {																		// Start the commandline itterator to check the command
 					        richrailsLexer lexer = new richrailsLexer(is);
 					        // create a buffer of tokens pulled from the lexer
 					        CommonTokenStream tokens = new CommonTokenStream(lexer);
@@ -220,11 +220,11 @@ public class PoorInterface extends javax.swing.JFrame
 		}
 	}
 
-	public static JPanel getdrawPanel() {
+	public static JPanel getdrawPanel() {					// Used to get the specific Jpanel when needed outside of this class
 		return drawPanel;
 	}
 	
-	public static void setCMDOutput(String output) {
+	public static void setCMDOutput(String output) {		// Used to add text to the output panel outside of this class
 		txtAreaCmdOutput.append(output + newline);
 	}
 }

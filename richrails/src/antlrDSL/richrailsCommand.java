@@ -12,12 +12,12 @@ public class richrailsCommand extends richrailsBaseListener {
 	}
 	
 	@Override public void enterNewcommand(richrailsParser.NewcommandContext ctx) 
-	{
-		if (ctx.getChild(0).getChild(1).getText().equalsIgnoreCase("train")) {
+	{	
+		if (ctx.getChild(0).getChild(1).getText().equalsIgnoreCase("train")) {				//check if the command is about a train or a wagon
 			Train train = new Train(ctx.getChild(0).getChild(2).getText());
 			PoorInterface.setCMDOutput("New train " + ctx.getChild(0).getChild(2).getText() + " added" );
 		}
-		else if (ctx.getChild(0).getChild(1).getText().equalsIgnoreCase("wagon")) {
+		else if (ctx.getChild(0).getChild(1).getText().equalsIgnoreCase("wagon")) {			//check if the command includes a number of seats for the wagon
 			if (ctx.getChild(0).getChildCount() < 4) {
 				ComponentFactory.getComponent("wagon", ctx.getChild(0).getChild(2).getText() );
 				PoorInterface.setCMDOutput("New wagon " + ctx.getChild(0).getChild(2).getText() + " created");
@@ -29,17 +29,14 @@ public class richrailsCommand extends richrailsBaseListener {
 			}
 			
 		}
-		System.out.println("New command ");
-		System.out.println(TrainController.getInstance().getAllTrains());
-		System.out.println(TrainController.getInstance().getAllWagons());
-		
 	}
 
 	@Override public void enterAddcommand(richrailsParser.AddcommandContext ctx) 
 	{
 			String compname = ctx.getChild(1).getText();
 			String trainname = ctx.getChild(3).getText();
-			for (Wagon w: TrainController.getInstance().getAllWagons()) {
+						
+			for (Wagon w: TrainController.getInstance().getAllWagons()) {				//Check if the specified wagon exists, then add it to the train if it does
 				if (w.getName().equalsIgnoreCase(compname)) {
 					TrainController.getInstance().getTrain(trainname).addComponent(TrainController.getInstance().getWagon(compname));
 					PoorInterface.setCMDOutput("Wagon " + compname + " added to train " + trainname);
@@ -49,15 +46,13 @@ public class richrailsCommand extends richrailsBaseListener {
 					PoorInterface.setCMDOutput("Wagon " + compname + " does not exist");
 				}
 			}
-			System.out.println("add command ");
-			System.out.println(TrainController.getInstance().getAllWagons());
-	
 	}
 	
 	@Override public void enterGetcommand(richrailsParser.GetcommandContext ctx) 
 	{
 		int numseats = 0;
-		if (ctx.getChild(1).getText().equals("train")) {
+		
+		if (ctx.getChild(1).getText().equals("train")) {								//Check if the command is about a train or a wagon
 			for (Component c: TrainController.getInstance().getTrain(ctx.getChild(2).getText()).getAllComponents()) {
 				if (c instanceof Wagon) {
 					numseats = numseats + ((Wagon) c).getSeats();
@@ -74,27 +69,26 @@ public class richrailsCommand extends richrailsBaseListener {
 	
 	@Override public void enterDelcommand(richrailsParser.DelcommandContext ctx) 
 	{
-		if (ctx.getChild(1).getText().equalsIgnoreCase("train")) {
-			for (Train t: TrainController.getInstance().getAllTrains()) {
-				if (t.getName().equalsIgnoreCase(ctx.getChild(2).getText())) {
-					for (Component c: t.getAllComponents()) {
-						if (c instanceof Wagon) {
-							TrainController.getInstance().delWagon((Wagon) c);
-						}
-						else if (c instanceof Locomotive) {
-							TrainController.getInstance().delLocomotive((Locomotive) c);
-						}
-					TrainController.getInstance().delTrain(t);
-					}
-				}
-			}
-		}
-		else if (ctx.getChild(0).getChild(1).getText().equalsIgnoreCase("wagon")) {
-			
-		}
-		System.out.println("del command ");
-		System.out.println(TrainController.getInstance().getAllTrains());
-		System.out.println(TrainController.getInstance().getAllWagons());
+//		THIS DOES NOT YET WORK, THAT'S WHY IT'S COMMENTED OUT
+		
+//		if (ctx.getChild(1).getText().equalsIgnoreCase("train")) {
+//			for (Train t: TrainController.getInstance().getAllTrains()) {
+//				if (t.getName().equalsIgnoreCase(ctx.getChild(2).getText())) {
+//					for (Component c: t.getAllComponents()) {
+//						if (c instanceof Wagon) {
+//							TrainController.getInstance().delWagon((Wagon) c);
+//						}
+//						else if (c instanceof Locomotive) {
+//							TrainController.getInstance().delLocomotive((Locomotive) c);
+//						}
+//					TrainController.getInstance().delTrain(t);
+//					}
+//				}
+//			}
+//		}
+//		else if (ctx.getChild(0).getChild(1).getText().equalsIgnoreCase("wagon")) {
+//			
+//		}
 	}
 	
 	@Override public void enterRemcommand(richrailsParser.RemcommandContext ctx) 

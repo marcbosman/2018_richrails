@@ -12,7 +12,6 @@ public class SideViewObserver implements Observer {
 	private int NrofTrains;
 	private int OFFSET = 100;
 	private int TRAINLENGTH = 100;
-	private int NrofWagons;
 	private JPanel Panel;
 	private Train train;
 	private String Wagonname;
@@ -51,17 +50,17 @@ public class SideViewObserver implements Observer {
 				NrofTrains = TrainController.getInstance().getNrofTrains();
 				Graphics g = drawPanel.getGraphics();
 				g.setColor(Color.LIGHT_GRAY);
-				//
+				// Draw the body
 				g.fillRect(30,80+NrofTrains*OFFSET,80,40);
 				g.fillRect(80,60+NrofTrains*OFFSET,30,30);
-				
+				// Draw the smoke
 				g.drawRoundRect(85, 40+NrofTrains*OFFSET, 20, 20, 20, 20);
 				g.drawRoundRect(85, NrofTrains*OFFSET, 40, 40, 40, 40);
 				g.setColor(Color.BLACK);
-				// WIELEN
+				// Draw the wheels
 				g.fillRoundRect(35, 120+NrofTrains*OFFSET, 20, 20, 20, 20);
 				g.fillRoundRect(80, 120+NrofTrains*OFFSET, 20, 20, 20, 20);
-				// STRING TEXT
+				// Write the name
 				g.drawString(Loconame,40,105+NrofTrains*OFFSET);
 			}
 
@@ -70,10 +69,13 @@ public class SideViewObserver implements Observer {
 		    Graphics g = drawPanel.getGraphics();
 		    NrofWagons = 0;
 			g.setColor(Color.LIGHT_GRAY);
+			// Draw the body
 			g.fillRect(30+TrainController.getInstance().getTrain(train.getName()).currentNumberOfWagons()*TRAINLENGTH-100,80+TrainController.getInstance().getTrainIndex(train)*OFFSET,80,40);
 			g.setColor(Color.BLACK);
+			// Draw the wheels
 			g.fillRoundRect(35+TrainController.getInstance().getTrain(train.getName()).currentNumberOfWagons()*TRAINLENGTH-100, 120+TrainController.getInstance().getTrainIndex(train)*OFFSET, 20, 20, 20, 20);
 			g.fillRoundRect(80+TrainController.getInstance().getTrain(train.getName()).currentNumberOfWagons()*TRAINLENGTH-100, 120+TrainController.getInstance().getTrainIndex(train)*OFFSET, 20, 20, 20, 20);
+			// Write the name
 			g.drawString(Wagonname,40+TrainController.getInstance().getTrain(train.getName()).currentNumberOfWagons()*TRAINLENGTH-100,105+TrainController.getInstance().getTrainIndex(train)*OFFSET);
 	   }
 
