@@ -18,7 +18,7 @@ public class richrailsParser extends Parser {
 		new PredictionContextCache();
 	public static final int
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
-		T__9=10, NUMBER=11, ID=12, WS=13;
+		T__9=10, T__10=11, NUMBER=12, ID=13, WS=14;
 	public static final int
 		RULE_command = 0, RULE_newcommand = 1, RULE_newtraincommand = 2, RULE_newwagoncommand = 3, 
 		RULE_delcommand = 4, RULE_addcommand = 5, RULE_getcommand = 6, RULE_remcommand = 7, 
@@ -29,12 +29,12 @@ public class richrailsParser extends Parser {
 	};
 
 	private static final String[] _LITERAL_NAMES = {
-		null, "'new'", "'train'", "'wagon'", "'delete'", "'type'", "'add'", "'to'", 
-		"'getnumseats'", "'remove'", "'from'"
+		null, "'new'", "'train'", "'wagon'", "'numseats'", "'delete'", "'type'", 
+		"'add'", "'to'", "'getnumseats'", "'remove'", "'from'"
 	};
 	private static final String[] _SYMBOLIC_NAMES = {
-		null, null, null, null, null, null, null, null, null, null, null, "NUMBER", 
-		"ID", "WS"
+		null, null, null, null, null, null, null, null, null, null, null, null, 
+		"NUMBER", "ID", "WS"
 	};
 	public static final Vocabulary VOCABULARY = new VocabularyImpl(_LITERAL_NAMES, _SYMBOLIC_NAMES);
 
@@ -129,28 +129,28 @@ public class richrailsParser extends Parser {
 				newcommand();
 				}
 				break;
-			case T__3:
+			case T__4:
 				enterOuterAlt(_localctx, 2);
 				{
 				setState(19);
 				delcommand();
 				}
 				break;
-			case T__5:
+			case T__6:
 				enterOuterAlt(_localctx, 3);
 				{
 				setState(20);
 				addcommand();
 				}
 				break;
-			case T__7:
+			case T__8:
 				enterOuterAlt(_localctx, 4);
 				{
 				setState(21);
 				getcommand();
 				}
 				break;
-			case T__8:
+			case T__9:
 				enterOuterAlt(_localctx, 5);
 				{
 				setState(22);
@@ -270,6 +270,7 @@ public class richrailsParser extends Parser {
 
 	public static class NewwagoncommandContext extends ParserRuleContext {
 		public TerminalNode ID() { return getToken(richrailsParser.ID, 0); }
+		public TerminalNode NUMBER() { return getToken(richrailsParser.NUMBER, 0); }
 		public NewwagoncommandContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -287,6 +288,7 @@ public class richrailsParser extends Parser {
 	public final NewwagoncommandContext newwagoncommand() throws RecognitionException {
 		NewwagoncommandContext _localctx = new NewwagoncommandContext(_ctx, getState());
 		enterRule(_localctx, 6, RULE_newwagoncommand);
+		int _la;
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
@@ -296,6 +298,18 @@ public class richrailsParser extends Parser {
 			match(T__2);
 			setState(35);
 			match(ID);
+			setState(38);
+			_errHandler.sync(this);
+			_la = _input.LA(1);
+			if (_la==T__3) {
+				{
+				setState(36);
+				match(T__3);
+				setState(37);
+				match(NUMBER);
+				}
+			}
+
 			}
 		}
 		catch (RecognitionException re) {
@@ -331,11 +345,11 @@ public class richrailsParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(37);
-			match(T__3);
-			setState(38);
+			setState(40);
 			match(T__4);
-			setState(39);
+			setState(41);
+			match(T__5);
+			setState(42);
 			match(ID);
 			}
 		}
@@ -375,13 +389,13 @@ public class richrailsParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(41);
-			match(T__5);
-			setState(42);
-			match(ID);
-			setState(43);
-			match(T__6);
 			setState(44);
+			match(T__6);
+			setState(45);
+			match(ID);
+			setState(46);
+			match(T__7);
+			setState(47);
 			match(ID);
 			}
 		}
@@ -421,11 +435,11 @@ public class richrailsParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(46);
-			match(T__7);
-			setState(47);
+			setState(49);
+			match(T__8);
+			setState(50);
 			type();
-			setState(48);
+			setState(51);
 			match(ID);
 			}
 		}
@@ -465,13 +479,13 @@ public class richrailsParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(50);
-			match(T__8);
-			setState(51);
-			match(ID);
-			setState(52);
-			match(T__9);
 			setState(53);
+			match(T__9);
+			setState(54);
+			match(ID);
+			setState(55);
+			match(T__10);
+			setState(56);
 			match(ID);
 			}
 		}
@@ -505,14 +519,14 @@ public class richrailsParser extends Parser {
 		TypeContext _localctx = new TypeContext(_ctx, getState());
 		enterRule(_localctx, 16, RULE_type);
 		try {
-			setState(57);
+			setState(60);
 			_errHandler.sync(this);
 			switch (_input.LA(1)) {
 			case T__1:
 				enterOuterAlt(_localctx, 1);
 				{
 				{
-				setState(55);
+				setState(58);
 				match(T__1);
 				}
 				}
@@ -521,7 +535,7 @@ public class richrailsParser extends Parser {
 				enterOuterAlt(_localctx, 2);
 				{
 				{
-				setState(56);
+				setState(59);
 				match(T__2);
 				}
 				}
@@ -542,22 +556,22 @@ public class richrailsParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\17>\4\2\t\2\4\3\t"+
+		"\3\u608b\ua72a\u8133\ub9ed\u417c\u3be7\u7786\u5964\3\20A\4\2\t\2\4\3\t"+
 		"\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\3\2\3\2\3\2"+
 		"\3\2\3\2\5\2\32\n\2\3\3\3\3\5\3\36\n\3\3\4\3\4\3\4\3\4\3\5\3\5\3\5\3\5"+
-		"\3\6\3\6\3\6\3\6\3\7\3\7\3\7\3\7\3\7\3\b\3\b\3\b\3\b\3\t\3\t\3\t\3\t\3"+
-		"\t\3\n\3\n\5\n<\n\n\3\n\2\2\13\2\4\6\b\n\f\16\20\22\2\2\2:\2\31\3\2\2"+
-		"\2\4\35\3\2\2\2\6\37\3\2\2\2\b#\3\2\2\2\n\'\3\2\2\2\f+\3\2\2\2\16\60\3"+
-		"\2\2\2\20\64\3\2\2\2\22;\3\2\2\2\24\32\5\4\3\2\25\32\5\n\6\2\26\32\5\f"+
-		"\7\2\27\32\5\16\b\2\30\32\5\20\t\2\31\24\3\2\2\2\31\25\3\2\2\2\31\26\3"+
-		"\2\2\2\31\27\3\2\2\2\31\30\3\2\2\2\32\3\3\2\2\2\33\36\5\6\4\2\34\36\5"+
-		"\b\5\2\35\33\3\2\2\2\35\34\3\2\2\2\36\5\3\2\2\2\37 \7\3\2\2 !\7\4\2\2"+
-		"!\"\7\16\2\2\"\7\3\2\2\2#$\7\3\2\2$%\7\5\2\2%&\7\16\2\2&\t\3\2\2\2\'("+
-		"\7\6\2\2()\7\7\2\2)*\7\16\2\2*\13\3\2\2\2+,\7\b\2\2,-\7\16\2\2-.\7\t\2"+
-		"\2./\7\16\2\2/\r\3\2\2\2\60\61\7\n\2\2\61\62\5\22\n\2\62\63\7\16\2\2\63"+
-		"\17\3\2\2\2\64\65\7\13\2\2\65\66\7\16\2\2\66\67\7\f\2\2\678\7\16\2\28"+
-		"\21\3\2\2\29<\7\4\2\2:<\7\5\2\2;9\3\2\2\2;:\3\2\2\2<\23\3\2\2\2\5\31\35"+
-		";";
+		"\3\5\5\5)\n\5\3\6\3\6\3\6\3\6\3\7\3\7\3\7\3\7\3\7\3\b\3\b\3\b\3\b\3\t"+
+		"\3\t\3\t\3\t\3\t\3\n\3\n\5\n?\n\n\3\n\2\2\13\2\4\6\b\n\f\16\20\22\2\2"+
+		"\2>\2\31\3\2\2\2\4\35\3\2\2\2\6\37\3\2\2\2\b#\3\2\2\2\n*\3\2\2\2\f.\3"+
+		"\2\2\2\16\63\3\2\2\2\20\67\3\2\2\2\22>\3\2\2\2\24\32\5\4\3\2\25\32\5\n"+
+		"\6\2\26\32\5\f\7\2\27\32\5\16\b\2\30\32\5\20\t\2\31\24\3\2\2\2\31\25\3"+
+		"\2\2\2\31\26\3\2\2\2\31\27\3\2\2\2\31\30\3\2\2\2\32\3\3\2\2\2\33\36\5"+
+		"\6\4\2\34\36\5\b\5\2\35\33\3\2\2\2\35\34\3\2\2\2\36\5\3\2\2\2\37 \7\3"+
+		"\2\2 !\7\4\2\2!\"\7\17\2\2\"\7\3\2\2\2#$\7\3\2\2$%\7\5\2\2%(\7\17\2\2"+
+		"&\'\7\6\2\2\')\7\16\2\2(&\3\2\2\2()\3\2\2\2)\t\3\2\2\2*+\7\7\2\2+,\7\b"+
+		"\2\2,-\7\17\2\2-\13\3\2\2\2./\7\t\2\2/\60\7\17\2\2\60\61\7\n\2\2\61\62"+
+		"\7\17\2\2\62\r\3\2\2\2\63\64\7\13\2\2\64\65\5\22\n\2\65\66\7\17\2\2\66"+
+		"\17\3\2\2\2\678\7\f\2\289\7\17\2\29:\7\r\2\2:;\7\17\2\2;\21\3\2\2\2<?"+
+		"\7\4\2\2=?\7\5\2\2><\3\2\2\2>=\3\2\2\2?\23\3\2\2\2\6\31\35(>";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {
