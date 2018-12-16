@@ -21,6 +21,7 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
 
@@ -44,6 +45,7 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import javax.swing.JTextArea;
 import javax.swing.UIManager;
 import java.awt.SystemColor;
+import javax.swing.JLabel;
 
 
 /**
@@ -61,21 +63,6 @@ import java.awt.SystemColor;
 public class PoorInterface extends javax.swing.JFrame implements ActionListener 
 {	
 	private JPanel jPanel1;
-	private JTextPane tpTextTrain;
-	private JButton btnDeleteWagon3;
-	private JButton btnDeleteWagon2;
-	private JButton btnDeleteWagon1;
-	private JButton jButton1;
-	private JPanel pnlWagons;
-	private JButton btnAddWagon2;
-	private JButton btnAddWagon1;
-	private JTextField tfCurrentTrain;
-	private JButton btnDeleteTrain;
-	private JButton btnChooseTrain;
-	private JComboBox<Train> cbAllTrains;
-	private JButton btnNewTrain;
-	private JTextField tfNewTrain;
-	private JPanel jPanel2;
 	private static JPanel drawPanel;
 	
 	private HashMap numberOfWagons;
@@ -84,13 +71,16 @@ public class PoorInterface extends javax.swing.JFrame implements ActionListener
 	private int OFFSET = 100;
 	private int TRAINLENGTH = 100;
 	private JTextArea txtAreaCmd;
+	private JScrollPane txtAreaCmdd;
 	private static JTextArea txtAreaCmdOutput;
+	private JScrollPane txtAreaCmdOutputt;
 	private JPanel panel;
 	private JTextPane txtpnEnterCommand;
 	private JTextField textFieldCommand;
 	private JButton btnSubmit;
 	
 	private final static String newline = "\n";
+	private JLabel lblThimEickhofMarc;
 
 	public PoorInterface() 
 	{
@@ -106,8 +96,8 @@ public class PoorInterface extends javax.swing.JFrame implements ActionListener
 			this.setTitle("EvenPoorerRail");
 			GridBagLayout thisLayout = new GridBagLayout();
 			setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-			thisLayout.rowWeights = new double[] {0.1, 0.1, 0.0, 0.0, 0.0};
-			thisLayout.rowHeights = new int[] {7, 7, 150, 0, 7};
+			thisLayout.rowWeights = new double[] {0.1, 0.1, 0.0, 0.0};
+			thisLayout.rowHeights = new int[] {7, 7, 150, 0};
 			thisLayout.columnWeights = new double[] {1.0, 1.0};
 			thisLayout.columnWidths = new int[] {500, 489};
 			getContentPane().setLayout(thisLayout);
@@ -117,41 +107,49 @@ public class PoorInterface extends javax.swing.JFrame implements ActionListener
 				getContentPane().add(jPanel1, new GridBagConstraints(0, 0, 2, 2, 0.0, 0.0, GridBagConstraints.EAST, GridBagConstraints.BOTH, new Insets(0, 0, 5, 0), 0, 0));
 				{
 					drawPanel = new JPanel();
+					drawPanel.setFocusTraversalKeysEnabled(false);
+					drawPanel.setFocusable(false);
 					drawPanel.setBackground(Color.WHITE);
 					jPanel1.add(drawPanel,BorderLayout.CENTER);
 				}
 			}
 			{
 				txtAreaCmd = new JTextArea();
+				txtAreaCmd.setFocusTraversalKeysEnabled(false);
+				txtAreaCmd.setFocusable(false);
+				txtAreaCmd.setAutoscrolls(false);
 				txtAreaCmd.setSize(new Dimension(200, 0));
 				txtAreaCmd.setEditable(false);
+				txtAreaCmdd = new JScrollPane(txtAreaCmd);
 				GridBagConstraints gbc_txtAreaCmd = new GridBagConstraints();
 				gbc_txtAreaCmd.insets = new Insets(0, 0, 5, 5);
 				gbc_txtAreaCmd.fill = GridBagConstraints.BOTH;
 				gbc_txtAreaCmd.gridx = 0;
 				gbc_txtAreaCmd.gridy = 2;
-				getContentPane().add(txtAreaCmd, gbc_txtAreaCmd);
+				getContentPane().add(txtAreaCmdd, gbc_txtAreaCmd);
 			}
 			{
 				txtAreaCmdOutput = new JTextArea();
+				txtAreaCmdOutput.setFocusTraversalKeysEnabled(false);
+				txtAreaCmdOutput.setFocusable(false);
 				txtAreaCmdOutput.setForeground(Color.WHITE);
 				txtAreaCmdOutput.setDisabledTextColor(Color.WHITE);
 				txtAreaCmdOutput.setBackground(Color.BLACK);
 				txtAreaCmdOutput.setEditable(false);
+				txtAreaCmdOutputt = new JScrollPane(txtAreaCmdOutput);
 				GridBagConstraints gbc_txtAreaCmdOutput = new GridBagConstraints();
-				gbc_txtAreaCmdOutput.gridheight = 2;
 				gbc_txtAreaCmdOutput.insets = new Insets(0, 0, 5, 0);
 				gbc_txtAreaCmdOutput.fill = GridBagConstraints.BOTH;
 				gbc_txtAreaCmdOutput.gridx = 1;
 				gbc_txtAreaCmdOutput.gridy = 2;
-				getContentPane().add(txtAreaCmdOutput, gbc_txtAreaCmdOutput);
+				getContentPane().add(txtAreaCmdOutputt, gbc_txtAreaCmdOutput);
 			}
 			{
 				panel = new JPanel();
 				panel.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
 				GridBagConstraints gbc_panel = new GridBagConstraints();
 				gbc_panel.anchor = GridBagConstraints.SOUTH;
-				gbc_panel.insets = new Insets(0, 0, 5, 5);
+				gbc_panel.insets = new Insets(0, 0, 0, 5);
 				gbc_panel.fill = GridBagConstraints.HORIZONTAL;
 				gbc_panel.gridx = 0;
 				gbc_panel.gridy = 3;
@@ -159,11 +157,14 @@ public class PoorInterface extends javax.swing.JFrame implements ActionListener
 				GridBagLayout gbl_panel = new GridBagLayout();
 				gbl_panel.columnWidths = new int[]{7, 7, 7, 0};
 				gbl_panel.rowHeights = new int[]{7, 0};
-				gbl_panel.columnWeights = new double[]{0.1, 0.1, 0.1, Double.MIN_VALUE};
+				gbl_panel.columnWeights = new double[]{0.0, 0.1, 0.0, Double.MIN_VALUE};
 				gbl_panel.rowWeights = new double[]{0.1, Double.MIN_VALUE};
 				panel.setLayout(gbl_panel);
 				{
 					txtpnEnterCommand = new JTextPane();
+					txtpnEnterCommand.setFocusCycleRoot(false);
+					txtpnEnterCommand.setFocusTraversalKeysEnabled(false);
+					txtpnEnterCommand.setFocusable(false);
 					txtpnEnterCommand.setText("Enter command:");
 					txtpnEnterCommand.setEditable(false);
 					txtpnEnterCommand.setBackground(SystemColor.menu);
@@ -175,7 +176,7 @@ public class PoorInterface extends javax.swing.JFrame implements ActionListener
 					gbc_txtpnEnterCommand.gridwidth = 1;
 					gbc_txtpnEnterCommand.gridheight = 1;
 					gbc_txtpnEnterCommand.fill = GridBagConstraints.NONE;
-					gbc_txtpnEnterCommand.anchor = GridBagConstraints.SOUTH;
+					gbc_txtpnEnterCommand.anchor = GridBagConstraints.SOUTHWEST;
 					gbc_txtpnEnterCommand.insets = new Insets(0, 0, 0, 5);
 					gbc_txtpnEnterCommand.gridx = 0;
 					gbc_txtpnEnterCommand.gridy = 0;
@@ -190,7 +191,7 @@ public class PoorInterface extends javax.swing.JFrame implements ActionListener
 					gbc_textFieldCommand.ipadx = 0;
 					gbc_textFieldCommand.gridwidth = 1;
 					gbc_textFieldCommand.gridheight = 1;
-					gbc_textFieldCommand.fill = GridBagConstraints.NONE;
+					gbc_textFieldCommand.fill = GridBagConstraints.HORIZONTAL;
 					gbc_textFieldCommand.anchor = GridBagConstraints.SOUTH;
 					gbc_textFieldCommand.insets = new Insets(0, 0, 0, 5);
 					gbc_textFieldCommand.gridx = 1;
@@ -241,121 +242,25 @@ public class PoorInterface extends javax.swing.JFrame implements ActionListener
 					gbc_btnSubmit.gridwidth = 1;
 					gbc_btnSubmit.gridheight = 1;
 					gbc_btnSubmit.fill = GridBagConstraints.NONE;
-					gbc_btnSubmit.anchor = GridBagConstraints.SOUTH;
+					gbc_btnSubmit.anchor = GridBagConstraints.SOUTHEAST;
 					gbc_btnSubmit.gridx = 2;
 					gbc_btnSubmit.gridy = 0;
 					panel.add(btnSubmit, gbc_btnSubmit);
 				}
 			}
 			{
-				pnlWagons = new JPanel();
-				GridBagLayout jPanel3Layout = new GridBagLayout();
-				getContentPane().add(pnlWagons, new GridBagConstraints(1, 4, 1, 1, 0.0, 0.0, GridBagConstraints.SOUTH, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
-				jPanel3Layout.rowWeights = new double[] {0.1, 0.1, 0.1, 0.1};
-				jPanel3Layout.rowHeights = new int[] {7, 7, 7, 7};
-				jPanel3Layout.columnWeights = new double[] {0.1, 0.1, 0.1, 0.1};
-				jPanel3Layout.columnWidths = new int[] {7, 7, 7, 7};
-				pnlWagons.setLayout(jPanel3Layout);
-				pnlWagons.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
-				{
-					tfCurrentTrain = new JTextField();
-					tfCurrentTrain.setBorder(null);
-					tfCurrentTrain.setBackground(SystemColor.menu);
-					tfCurrentTrain.setEditable(false);
-					pnlWagons.add(tfCurrentTrain, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.SOUTH, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
-					tfCurrentTrain.setText("selected: ");
-				}
-				{
-					btnAddWagon1 = new JButton();
-					pnlWagons.add(btnAddWagon1, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0, GridBagConstraints.SOUTH, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-					btnAddWagon1.setText("add wagon 1");
-					btnAddWagon1.addActionListener(this);
-				}
-				{
-					btnAddWagon2 = new JButton();
-					pnlWagons.add(btnAddWagon2, new GridBagConstraints(1, 1, 1, 1, 0.0, 0.0, GridBagConstraints.SOUTH, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-					btnAddWagon2.setText("add wagon 2");
-					btnAddWagon2.addActionListener(this);
-				}
-				{
-					jButton1 = new JButton();
-					pnlWagons.add(jButton1, new GridBagConstraints(1, 2, 1, 1, 0.0, 0.0, GridBagConstraints.SOUTH, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-					jButton1.setText("add wagon 3");
-					jButton1.addActionListener(this);
-				}
-				{
-					btnDeleteWagon1 = new JButton();
-					pnlWagons.add(btnDeleteWagon1, new GridBagConstraints(2, 0, 1, 1, 0.0, 0.0, GridBagConstraints.SOUTH, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-					btnDeleteWagon1.setText("delete wagon 1");
-					btnDeleteWagon1.addActionListener(this);
-				}
-				{
-					btnDeleteWagon2 = new JButton();
-					pnlWagons.add(btnDeleteWagon2, new GridBagConstraints(2, 1, 1, 1, 0.0, 0.0, GridBagConstraints.SOUTH, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-					btnDeleteWagon2.setText("delete wagon 2");
-					btnDeleteWagon2.addActionListener(this);
-				}
-				{
-					btnDeleteWagon3 = new JButton();
-					pnlWagons.add(btnDeleteWagon3, new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0, GridBagConstraints.SOUTH, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-					btnDeleteWagon3.setText("delete wagon 3");
-					btnDeleteWagon3.addActionListener(this);
-				}
+				lblThimEickhofMarc = new JLabel("Thim Eickhof, Marc Bosman, Ruben Sikkens");
+				lblThimEickhofMarc.setToolTipText("Thim Eickhof, Marc Bosman, Ruben Sikkens");
+				GridBagConstraints gbc_lblThimEickhofMarc = new GridBagConstraints();
+				gbc_lblThimEickhofMarc.gridx = 1;
+				gbc_lblThimEickhofMarc.gridy = 3;
+				getContentPane().add(lblThimEickhofMarc, gbc_lblThimEickhofMarc);
 			}
 			{
-				jPanel2 = new JPanel();
-				jPanel2.setBorder(new SoftBevelBorder(BevelBorder.LOWERED, null, null, null, null));
-				GridBagLayout jPanel2Layout = new GridBagLayout();
-				//jPanel2.setLayout(null);
-				jPanel2.setLayout(jPanel2Layout);
-				getContentPane().add(jPanel2, new GridBagConstraints(0, 4, 1, 1, 0.0, 0.0, GridBagConstraints.SOUTH, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 5), 0, 0));
-				{
-					tpTextTrain = new JTextPane();
-					tpTextTrain.setBackground(SystemColor.menu);
-					tpTextTrain.setEditable(false);
-					jPanel2.add(tpTextTrain, new GridBagConstraints(0, 0, 1, 1, 0.0, 0.0, GridBagConstraints.SOUTH, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-					jPanel2.setBounds(10, 10, 100, 15);
-					jPanel2Layout.rowWeights = new double[] {0.1, 0.1, 0.1, 0.1};
-					jPanel2Layout.rowHeights = new int[] {7, 7, 7, 7};
-					jPanel2Layout.columnWeights = new double[] {0.1, 0.1, 0.1, 0.1};
-					jPanel2Layout.columnWidths = new int[] {7, 7, 7, 7};
-					tpTextTrain.setText("train name:");
-				}
-				{
-					tfNewTrain = new JTextField(20);
-					tfNewTrain.requestFocus();
-					jPanel2.add(tfNewTrain, new GridBagConstraints(1, 0, 1, 1, 0.0, 0.0, GridBagConstraints.SOUTH, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-				}
-				{
-					btnNewTrain = new JButton();
-					jPanel2.add(btnNewTrain, new GridBagConstraints(2, 0, 1, 1, 0.0, 0.0, GridBagConstraints.SOUTH, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-					btnNewTrain.setText("make new train");
-					btnNewTrain.addActionListener(this);
-				}
 				{
 					ComboBoxModel cbAllTrainsModel = 
 						new DefaultComboBoxModel(
 								new String[] { });
-					cbAllTrains = new JComboBox();
-				/*	GridLayout cbAllTrainsLayout = new GridLayout(1, 1);
-					cbAllTrainsLayout.setColumns(1);
-					cbAllTrainsLayout.setHgap(5);
-					//cbAllTrainsLayout.setVgap(5);
-					cbAllTrains.setLayout(cbAllTrainsLayout);*/
-					jPanel2.add(cbAllTrains, new GridBagConstraints(1, 1, 1, 2, 0.0, 0.0, GridBagConstraints.SOUTH, GridBagConstraints.HORIZONTAL, new Insets(0, 0, 0, 0), 0, 0));
-					cbAllTrains.setModel(cbAllTrainsModel);
-				}
-				{
-					btnChooseTrain = new JButton();
-					jPanel2.add(btnChooseTrain, new GridBagConstraints(2, 1, 1, 1, 0.0, 0.0, GridBagConstraints.SOUTH, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-					btnChooseTrain.setText("select train");
-					btnChooseTrain.addActionListener(this);
-				}
-				{
-					btnDeleteTrain = new JButton();
-					jPanel2.add(btnDeleteTrain, new GridBagConstraints(2, 2, 1, 1, 0.0, 0.0, GridBagConstraints.SOUTH, GridBagConstraints.NONE, new Insets(0, 0, 0, 0), 0, 0));
-					btnDeleteTrain.setText("delete train");
-					btnDeleteTrain.addActionListener(this);
 				}
 			}
 			pack();
