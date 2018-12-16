@@ -57,22 +57,8 @@ public class Train {
 	       observer.update();
 	    }
 	 }
-	 
-//	public Wagon getWagon(String name) {
-//		Wagon wa = null;
-//		for (Component c: allComponents) {
-//			if (c instanceof Wagon) { 
-//				if (((Wagon) c).getName().equals(name)) {
-//					wa = (Wagon) c;
-//				}
-//			}
-//		}
-//		return wa;
-//	}
-	   
 	   
 	public int calculateSeats() {
-		//todo
 		return 0;
 	}
 	
