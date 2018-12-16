@@ -69,7 +69,12 @@ public class richrailsCommand extends richrailsBaseListener {
 	
 	@Override public void enterDelcommand(richrailsParser.DelcommandContext ctx) 
 	{
-		System.out.println("Now deleting train " + ctx.getText());
+		if (ctx.getChild(0).getChild(1).getText().equalsIgnoreCase("train")) {
+			
+		}
+		else if (ctx.getChild(0).getChild(1).getText().equalsIgnoreCase("wagon")) {
+			
+		}
 	}
 	
 	@Override public void enterRemcommand(richrailsParser.RemcommandContext ctx) 

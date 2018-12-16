@@ -32,6 +32,10 @@ public class TrainController {
 		return Wagons;
 	}
 	
+	public ArrayList<Train> getAllTrains(){
+		return Trains;
+	}
+	
 	public Train getTrain(String name) {
 		Train tr = null;
 		for (Train t: Trains) {

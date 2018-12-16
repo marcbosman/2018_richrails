@@ -35,10 +35,18 @@ public class SideViewObserver implements Observer {
 			else if (c instanceof Wagon) { 
 				Wagonname = ((Wagon) c).getName();
 				drawWagon(Panel);
-				
+							
 			}
 	   }
-	   
+//	   
+//	   public void update() {
+//		   this.Panel = PoorInterface.getdrawPanel();
+//		   for (Component c : train.getState()) {
+//			   if (c instanceof Locomotive) { drawLocomotive(Panel);}
+//			    else if (c instanceof Wagon) { drawWagon(Panel); }
+//			   }
+//			}
+//	   
 //		public String addTrain(Train train, JComboBox cbAllTrains, HashMap numberOfWagons, int currentNumberOfWagons,
 //				int currentTrain) {
 //		{
