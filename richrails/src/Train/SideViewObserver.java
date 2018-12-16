@@ -15,6 +15,8 @@ public class SideViewObserver implements Observer {
 	private int NrofWagons;
 	private JPanel Panel;
 	private Train train;
+	private String Wagonname;
+	private String Loconame;
 	
 	public SideViewObserver(Train train){
 	      this.train= train;
@@ -25,9 +27,16 @@ public class SideViewObserver implements Observer {
 	   public void update() {
 		   this.Panel = PoorInterface.getdrawPanel();
 		   Component c = train.getState().get(train.getState().size()-1);
-		    if (c instanceof Locomotive) { drawLocomotive(Panel);}
+		    if (c instanceof Locomotive) { 
+		    	Loconame = ((Locomotive) c).getName();
+		    	drawLocomotive(Panel);
+		     	}
 			    
-			else if (c instanceof Wagon) { drawWagon(Panel);}
+			else if (c instanceof Wagon) { 
+				Wagonname = ((Wagon) c).getName();
+				drawWagon(Panel);
+				
+			}
 	   }
 	   
 //		public String addTrain(Train train, JComboBox cbAllTrains, HashMap numberOfWagons, int currentNumberOfWagons,
@@ -79,7 +88,7 @@ public class SideViewObserver implements Observer {
 				g.fillRoundRect(35, 120+NrofTrains*OFFSET, 20, 20, 20, 20);
 				g.fillRoundRect(80, 120+NrofTrains*OFFSET, 20, 20, 20, 20);
 				// STRING TEXT
-				g.drawString(train.getName(),40,105+NrofTrains*OFFSET);
+				g.drawString(Loconame,40,105+NrofTrains*OFFSET);
 			}
 
 	   	   
@@ -91,7 +100,7 @@ public class SideViewObserver implements Observer {
 			g.setColor(Color.BLACK);
 			g.fillRoundRect(35+TrainController.getInstance().getTrain(train.getName()).currentNumberOfWagons()*TRAINLENGTH-100, 120+TrainController.getInstance().getTrainIndex(train)*OFFSET, 20, 20, 20, 20);
 			g.fillRoundRect(80+TrainController.getInstance().getTrain(train.getName()).currentNumberOfWagons()*TRAINLENGTH-100, 120+TrainController.getInstance().getTrainIndex(train)*OFFSET, 20, 20, 20, 20);
-			g.drawString("test",40+TrainController.getInstance().getTrain(train.getName()).currentNumberOfWagons()*TRAINLENGTH-100,105+TrainController.getInstance().getTrainIndex(train)*OFFSET);
+			g.drawString(Wagonname,40+TrainController.getInstance().getTrain(train.getName()).currentNumberOfWagons()*TRAINLENGTH-100,105+TrainController.getInstance().getTrainIndex(train)*OFFSET);
 	   }
 
 
