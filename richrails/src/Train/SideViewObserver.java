@@ -24,19 +24,10 @@ public class SideViewObserver implements Observer {
 	   @Override
 	   public void update() {
 		   this.Panel = PoorInterface.getdrawPanel();
-		   Graphics g = Panel.getGraphics();
-		   g.setColor(Color.BLACK);
-		   g.fillRect(0, 0, 500, 500);
-//		   Panel.removeAll();
-//		   Panel.updateUI();
-		   for (Component c : train.getState()) {
-//			   System.out.println(train.getState());
-			    if (c instanceof Locomotive) { drawLocomotive(Panel);}
+		   Component c = train.getState().get(train.getState().size()-1);
+		    if (c instanceof Locomotive) { drawLocomotive(Panel);}
 			    
-			    else if (c instanceof Wagon) { drawWagon(Panel);}
-			   
-		   }
-	     //test
+			else if (c instanceof Wagon) { drawWagon(Panel);}
 	   }
 	   
 //		public String addTrain(Train train, JComboBox cbAllTrains, HashMap numberOfWagons, int currentNumberOfWagons,
@@ -96,11 +87,11 @@ public class SideViewObserver implements Observer {
 		    Graphics g = drawPanel.getGraphics();
 		    NrofWagons = 0;
 			g.setColor(Color.LIGHT_GRAY);
-			g.fillRect(30+TrainController.getInstance().getTrain(train.getName()).currentNumberOfWagons()*TRAINLENGTH,80+TrainController.getInstance().getTrainIndex(train)*OFFSET,80,40);
+			g.fillRect(30+TrainController.getInstance().getTrain(train.getName()).currentNumberOfWagons()*TRAINLENGTH-100,80+TrainController.getInstance().getTrainIndex(train)*OFFSET,80,40);
 			g.setColor(Color.BLACK);
-			g.fillRoundRect(35+TrainController.getInstance().getTrain(train.getName()).currentNumberOfWagons()*TRAINLENGTH, 120+TrainController.getInstance().getTrainIndex(train)*OFFSET, 20, 20, 20, 20);
-			g.fillRoundRect(80+TrainController.getInstance().getTrain(train.getName()).currentNumberOfWagons()*TRAINLENGTH, 120+TrainController.getInstance().getTrainIndex(train)*OFFSET, 20, 20, 20, 20);
-			g.drawString("test",40+TrainController.getInstance().getTrain(train.getName()).currentNumberOfWagons()*TRAINLENGTH,105+TrainController.getInstance().getTrainIndex(train)*OFFSET);
+			g.fillRoundRect(35+TrainController.getInstance().getTrain(train.getName()).currentNumberOfWagons()*TRAINLENGTH-100, 120+TrainController.getInstance().getTrainIndex(train)*OFFSET, 20, 20, 20, 20);
+			g.fillRoundRect(80+TrainController.getInstance().getTrain(train.getName()).currentNumberOfWagons()*TRAINLENGTH-100, 120+TrainController.getInstance().getTrainIndex(train)*OFFSET, 20, 20, 20, 20);
+			g.drawString("test",40+TrainController.getInstance().getTrain(train.getName()).currentNumberOfWagons()*TRAINLENGTH-100,105+TrainController.getInstance().getTrainIndex(train)*OFFSET);
 	   }
 
 
