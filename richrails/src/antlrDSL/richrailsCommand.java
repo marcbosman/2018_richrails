@@ -29,7 +29,9 @@ public class richrailsCommand extends richrailsBaseListener {
 			}
 			
 		}
-			
+		System.out.println("New command ");
+		System.out.println(TrainController.getInstance().getAllTrains());
+		System.out.println(TrainController.getInstance().getAllWagons());
 		
 	}
 
@@ -41,11 +43,14 @@ public class richrailsCommand extends richrailsBaseListener {
 				if (w.getName().equalsIgnoreCase(compname)) {
 					TrainController.getInstance().getTrain(trainname).addComponent(TrainController.getInstance().getWagon(compname));
 					PoorInterface.setCMDOutput("Wagon " + compname + " added to train " + trainname);
+					break;
 				}
 				else {
 					PoorInterface.setCMDOutput("Wagon " + compname + " does not exist");
 				}
 			}
+			System.out.println("add command ");
+			System.out.println(TrainController.getInstance().getAllWagons());
 	
 	}
 	
@@ -69,12 +74,27 @@ public class richrailsCommand extends richrailsBaseListener {
 	
 	@Override public void enterDelcommand(richrailsParser.DelcommandContext ctx) 
 	{
-		if (ctx.getChild(0).getChild(1).getText().equalsIgnoreCase("train")) {
-			
+		if (ctx.getChild(1).getText().equalsIgnoreCase("train")) {
+			for (Train t: TrainController.getInstance().getAllTrains()) {
+				if (t.getName().equalsIgnoreCase(ctx.getChild(2).getText())) {
+					for (Component c: t.getAllComponents()) {
+						if (c instanceof Wagon) {
+							TrainController.getInstance().delWagon((Wagon) c);
+						}
+						else if (c instanceof Locomotive) {
+							TrainController.getInstance().delLocomotive((Locomotive) c);
+						}
+					TrainController.getInstance().delTrain(t);
+					}
+				}
+			}
 		}
 		else if (ctx.getChild(0).getChild(1).getText().equalsIgnoreCase("wagon")) {
 			
 		}
+		System.out.println("del command ");
+		System.out.println(TrainController.getInstance().getAllTrains());
+		System.out.println(TrainController.getInstance().getAllWagons());
 	}
 	
 	@Override public void enterRemcommand(richrailsParser.RemcommandContext ctx) 

@@ -46,6 +46,18 @@ public class TrainController {
 		return tr;
 	}
 	
+	public void delWagon(Wagon wagon) {
+		Wagons.remove(wagon);
+	}
+	
+	public void delTrain(Train train) {
+		Trains.remove(train);
+	}
+	
+	public void delLocomotive(Locomotive locomotive) {
+		Locomotives.remove(locomotive);
+	}
+	
 	public int getTrainIndex(Train train) {
 		for (Train t: Trains)
 		{
