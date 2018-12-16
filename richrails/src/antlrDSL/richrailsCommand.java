@@ -35,8 +35,8 @@ public class richrailsCommand extends richrailsBaseListener {
 
 	@Override public void enterAddcommand(richrailsParser.AddcommandContext ctx) 
 	{
-			String compname = ctx.getChild(0).getChild(1).getText();
-			String trainname = ctx.getChild(0).getChild(3).getText();
+			String compname = ctx.getChild(1).getText();
+			String trainname = ctx.getChild(3).getText();
 			TrainController.getInstance().getTrain(trainname).addComponent(TrainController.getInstance().getWagon(compname));
 			PoorInterface.setCMDOutput("Wagon " + compname + " added to train " + trainname);
 	
@@ -44,7 +44,20 @@ public class richrailsCommand extends richrailsBaseListener {
 	
 	@Override public void enterGetcommand(richrailsParser.GetcommandContext ctx) 
 	{
-		System.out.println("Now getting seats of train " + ctx.getText());
+		int numseats = 0;
+		if (ctx.getChild(1).getText().equals("train")) {
+			for (Component c: TrainController.getInstance().getTrain(ctx.getChild(2).getText()).getAllComponents()) {
+				if (c instanceof Wagon) {
+					numseats = numseats + ((Wagon) c).getSeats();
+				}
+			}
+			PoorInterface.setCMDOutput("Train " + ctx.getChild(2).getText() + " has " + numseats + " seats");
+		}
+		else if (ctx.getChild(1).getText().equals("wagon")) {
+			numseats = TrainController.getInstance().getWagon(ctx.getChild(2).getText()).getSeats();
+			PoorInterface.setCMDOutput("Wagon " + ctx.getChild(2).getText() + " has " + numseats + " seats");
+		}
+		
 	}
 	
 	@Override public void enterDelcommand(richrailsParser.DelcommandContext ctx) 

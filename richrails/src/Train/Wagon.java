@@ -3,7 +3,7 @@ package Train;
 public class Wagon implements Component {
 	private String name;
 	private int wagonID;
-	private int seats;
+	private int seats = 0;
 	
 	public Wagon(String nm)
 	{name = nm;
