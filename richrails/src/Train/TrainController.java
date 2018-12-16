@@ -28,6 +28,10 @@ public class TrainController {
 		return Trains.size();
 	}
 	
+	public ArrayList<Wagon> getAllWagons(){
+		return Wagons;
+	}
+	
 	public Train getTrain(String name) {
 		Train tr = null;
 		for (Train t: Trains) {

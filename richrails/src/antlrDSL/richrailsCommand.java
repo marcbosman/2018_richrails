@@ -20,6 +20,7 @@ public class richrailsCommand extends richrailsBaseListener {
 		else if (ctx.getText().toLowerCase().startsWith("newwagon")) {
 			ComponentFactory.getComponent("wagon", ctx.getText().toLowerCase().split("newwagon")[1] );
 			PoorInterface.setCMDOutput("New wagon " + ctx.getText().toLowerCase().split("newwagon")[1] + " created");
+//			System.out.println("Command " + TrainController.getInstance().getAllWagons());
 			
 		}
 			
@@ -28,16 +29,15 @@ public class richrailsCommand extends richrailsBaseListener {
 
 	@Override public void enterAddcommand(richrailsParser.AddcommandContext ctx) 
 	{
-		System.out.println("Now adding train/wagon " + ctx.getText());
 		String compname = ctx.getText().toLowerCase().substring(3).split("to")[0];
-		System.out.println(compname);
+//		System.out.println("Compname " + compname);
 		String trainname = ctx.getText().toLowerCase().split("to")[1];
-		System.out.println(trainname);
+//		System.out.println("Trainname " + trainname);
 		Train tr1 = TrainController.getInstance().getTrain(trainname);
-		System.out.println(tr1);
+//		System.out.println(tr1);
 		Component c1 = TrainController.getInstance().getWagon(compname);
-		System.out.println(c1);
-		tr1.addComponent(c1);
+//		System.out.println(c1);
+//		tr1.addComponent(c1);
 		TrainController.getInstance().getTrain(trainname).addComponent(TrainController.getInstance().getWagon(compname));;
 		
 	}
