@@ -1,41 +1,24 @@
-// POORRAIL MAAR BUTTONS HEBBEN GEEN UITVOER MEER
-
 package PoorRail;
 
 import java.awt.BorderLayout;
-import java.util.HashMap;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.BorderFactory;
-import javax.swing.ComboBoxModel;
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.JTextPane;
-
 import javax.swing.WindowConstants;
 import javax.swing.border.BevelBorder;
-
-import Train.*;
 import antlrDSL.richrailsCommand;
 import antlrDSL.richrailsLexer;
 import antlrDSL.richrailsParser;
-
-import javax.swing.SwingUtilities;
 import javax.swing.border.SoftBevelBorder;
-
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -43,33 +26,14 @@ import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 import javax.swing.JTextArea;
-import javax.swing.UIManager;
 import java.awt.SystemColor;
 import javax.swing.JLabel;
 
-
-/**
-* This code was edited or generated using CloudGarden's Jigloo
-* SWT/Swing GUI Builder, which is free for non-commercial
-* use. If Jigloo is being used commercially (ie, by a corporation,
-* company or business for any purpose whatever) then you
-* should purchase a license for each developer using Jigloo.
-* Please visit www.cloudgarden.com for details.
-* Use of Jigloo implies acceptance of these licensing terms.
-* A COMMERCIAL LICENSE HAS NOT BEEN PURCHASED FOR
-* THIS MACHINE, SO JIGLOO OR THIS CODE CANNOT BE USED
-* LEGALLY FOR ANY CORPORATE OR COMMERCIAL PURPOSE.
-*/
-public class PoorInterface extends javax.swing.JFrame implements ActionListener 
+@SuppressWarnings("serial")
+public class PoorInterface extends javax.swing.JFrame
 {	
 	private JPanel jPanel1;
 	private static JPanel drawPanel;
-	
-	private HashMap numberOfWagons;
-	private int currentNumberOfWagons;
-	private int currentTrain = -1;
-	private int OFFSET = 100;
-	private int TRAINLENGTH = 100;
 	private JTextArea txtAreaCmd;
 	private JScrollPane txtAreaCmdd;
 	private static JTextArea txtAreaCmdOutput;
@@ -78,7 +42,6 @@ public class PoorInterface extends javax.swing.JFrame implements ActionListener
 	private JTextPane txtpnEnterCommand;
 	private JTextField textFieldCommand;
 	private JButton btnSubmit;
-	
 	private final static String newline = "\n";
 	private JLabel lblThimEickhofMarc;
 
@@ -90,7 +53,6 @@ public class PoorInterface extends javax.swing.JFrame implements ActionListener
 	
 	private void initGUI() 
 	{
-		// GUI BUILDING
 		try 
 		{
 			this.setTitle("EvenPoorerRail");
@@ -200,37 +162,27 @@ public class PoorInterface extends javax.swing.JFrame implements ActionListener
 				}
 				{
 					btnSubmit = new JButton();
+					
 					btnSubmit.addActionListener(new ActionListener() {
 						public void actionPerformed(ActionEvent arg0) {
-//							String command = textFieldCommand.getText();
-//							txtAreaCmd.append(command + newline);
-//							txtAreaCmdOutput.append("Action submitted" + newline);
-//							textFieldCommand.setText("");
 							CharStream is = CharStreams.fromString(textFieldCommand.getText());
-					        
+						      try {
 					        richrailsLexer lexer = new richrailsLexer(is);
-
 					        // create a buffer of tokens pulled from the lexer
 					        CommonTokenStream tokens = new CommonTokenStream(lexer);
-
 					        // create a parser that feeds off the tokens buffer
 					        richrailsParser parser = new richrailsParser(tokens);
-					        
 					        ParserRuleContext commandContext = parser.command();
-					        
 					        ParseTreeWalker walker = new ParseTreeWalker();
 					        richrailsCommand listener = new richrailsCommand();
-
 					        walker.walk(listener, commandContext);
-//							drawPanel.removeAll();
-//							drawPanel.updateUI();
 							String command = textFieldCommand.getText();
 							txtAreaCmd.append(command + newline);
 							textFieldCommand.setText("");
-							// BLANK CANVAS
-//							drawPanel.removeAll();
-//							drawPanel.updateUI();
-							//github.com/marcbosman/2018_richrails
+						      }
+						      catch (Exception e) {
+						    	  System.out.println("Exception occured: " + e);
+						      }
 						}
 					});
 					btnSubmit.setText("Submit");
@@ -258,200 +210,16 @@ public class PoorInterface extends javax.swing.JFrame implements ActionListener
 			}
 			{
 				{
-					ComboBoxModel cbAllTrainsModel = 
-						new DefaultComboBoxModel(
-								new String[] { });
+
 				}
 			}
 			pack();
-			numberOfWagons = new HashMap();
 		} catch (Exception e) 
 		{
 			e.printStackTrace();
 		}
 	}
-	
-	public void actionPerformed(ActionEvent event)
-	{
-//		if (event.getSource()== btnNewTrain)
-//		{
-//			// NEW TRAIN BUTTON
-//			
-//			
-//				String trainName = tfNewTrain.getText();
-//				if (trainName != null && trainName.trim().length()>0)
-//				{
-//					Train train = new Train(trainName);
-//					cbAllTrains.addItem(train);
-//
-//					txtAreaCmd.append("add train " + train.getName() + newline);
-//					txtAreaCmdOutput.append("Train " + train.getName() + " added. Choo choooo!" + newline);
-//					textFieldCommand.setText("");
-////					currentTrain = cbAllTrains.getSelectedIndex();
-////					svo.addTrain(train, cbAllTrains, numberOfWagons, currentNumberOfWagons, currentTrain);
-////					svo.drawLocomotive(train, drawPanel);
-//				}
-//			
-//			
-//
-//		}
-//		else if (event.getSource() == btnChooseTrain)
-//		{
-//			// SELECT TRAIN BUTTON
-////			
-//			if (cbAllTrains.getItemCount() > 0)
-//			{
-//				Train selection = (Train)cbAllTrains.getSelectedItem();
-//				tfCurrentTrain.setText("selected: " + selection.getName());
-//				
-//				txtAreaCmd.append("select train " + selection.getName() + newline);
-//				txtAreaCmdOutput.append("Train " + selection.getName() + " selected. Now what?" + newline);
-//				textFieldCommand.setText("");
-////				int ti = cbAllTrains.getSelectedIndex();
-////				if (ti != currentTrain)
-////				{
-////					numberOfWagons.put(currentTrain, currentNumberOfWagons);
-////				}
-////				currentTrain = ti;
-////				try
-////				{
-////					currentNumberOfWagons = (Integer) numberOfWagons.get(currentTrain);
-////				}
-////				catch (Exception e)
-////				{
-////					currentNumberOfWagons = 0;
-////				}			
-//			}
-//		}
-//		else if (event.getSource() == btnDeleteTrain)
-//		{
-//			// DELETE TRAIN BUTTON
-//			
-////			
-////			if (cbAllTrains.getItemCount() > 0)
-////			{
-////				String t = (String)cbAllTrains.getSelectedItem();
-////				cbAllTrains.removeItemAt(cbAllTrains.getSelectedIndex());
-////				numberOfWagons.remove(t);
-////				repaint();
-////				if ((String)cbAllTrains.getSelectedItem() != null)
-////				{
-////					currentTrain = cbAllTrains.getSelectedIndex();
-////					tfCurrentTrain.setText("selected: " + (String)cbAllTrains.getSelectedItem());
-////				}
-////				else
-////				{
-////					currentTrain = 0;
-////					tfCurrentTrain.setText("selected: ");
-////				}
-////			}
-//		}
-//		else if (event.getSource() == btnAddWagon1)
-//		{
-//			// ADD WAGON 1
-//		
-//			
-////			currentNumberOfWagons++;
-////			drawWagon("Wagon1");
-//		}
-//		else if (event.getSource() == btnAddWagon2)
-//		{
-//			// ADD WAGON 2
-//			
-////			currentNumberOfWagons++;
-////			drawWagon("Wagon2");
-//		}
-//		else if (event.getSource() == jButton1)
-//		{
-//			// ADD WAGON 3
-//			
-////			currentNumberOfWagons++;
-////			drawWagon("Wagon3");
-//		}
-//		else if (event.getSource() == btnDeleteWagon1)
-//		{
-//			// DELETE WAGON 1
-//			
-////			repaint(30+TRAINLENGTH,80+currentTrain*OFFSET,1,1);
-//		}
-//		else if (event.getSource() == btnDeleteWagon2)
-//		{
-//			// DELETE WAGON 2
-//			
-////			repaint(30+TRAINLENGTH,80+currentTrain*OFFSET,1,1);		
-//		}
-//		else if (event.getSource() == btnDeleteWagon3)
-//		{
-//			// DELETE WAGON 3
-//			
-////			repaint(30+TRAINLENGTH,80+currentTrain*OFFSET,1,1);		
-//		}
-	}
-//		
-////		public void drawLocomotive(String train) 
-////		{
-////			if (train != "")
-////			{
-////				Graphics g = drawPanel.getGraphics();
-////				g.setColor(Color.LIGHT_GRAY);
-////				g.fillRect(30,80+currentTrain*OFFSET,80,40);
-////				g.fillRect(80,60+currentTrain*OFFSET,30,30);
-////				g.drawRoundRect(85, 40+currentTrain*OFFSET, 20, 20, 20, 20);
-////				g.drawRoundRect(85, currentTrain*OFFSET, 40, 40, 40, 40);
-////				g.setColor(Color.BLACK);
-////				g.fillRoundRect(35, 120+currentTrain*OFFSET, 20, 20, 20, 20);
-////				g.fillRoundRect(80, 120+currentTrain*OFFSET, 20, 20, 20, 20);
-////				g.drawString(train,40,105+currentTrain*OFFSET);
-////			}
-////	    }
-////	
-//	
-//	// FUNCTIES GEBRUIKT IN DE GUI(buttons)
-////	public String addTrain(String train)
-////	{
-////		String t = "";
-////		try
-////		{
-////			t = train.trim();
-////			for (int i = 0; i < cbAllTrains.getItemCount();i++ )
-////			{
-////				String cbTrain = (String)cbAllTrains.getItemAt(i);
-////				if (cbTrain.equalsIgnoreCase(t))
-////				{
-////					t = "";
-////					break;
-////				}
-////			}
-////			if (t != "")
-////			{
-////				if (currentTrain >= 0)
-////				{
-////					numberOfWagons.put(currentTrain,currentNumberOfWagons);
-////				}
-////				cbAllTrains.addItem(t);
-////				cbAllTrains.setSelectedItem(t);
-////				numberOfWagons.put(t, 0);
-////			}
-////		}
-////		catch (Exception e)
-////		{
-////		}
-////		return t;
-////			
-////	}
-//
-//	
-//	public void drawWagon(String wagon) 
-//	{
-//		Graphics g = drawPanel.getGraphics();
-//		g.setColor(Color.LIGHT_GRAY);
-//		g.fillRect(30+currentNumberOfWagons*TRAINLENGTH,80+currentTrain*OFFSET,80,40);
-//		g.setColor(Color.BLACK);
-//		g.fillRoundRect(35+currentNumberOfWagons*TRAINLENGTH, 120+currentTrain*OFFSET, 20, 20, 20, 20);
-//		g.fillRoundRect(80+currentNumberOfWagons*TRAINLENGTH, 120+currentTrain*OFFSET, 20, 20, 20, 20);
-//		g.drawString(wagon,40+currentNumberOfWagons*TRAINLENGTH,105+currentTrain*OFFSET);
-//    }
-//	
+
 	public static JPanel getdrawPanel() {
 		return drawPanel;
 	}
