@@ -21,10 +21,10 @@ public class TextBasedObserver implements Observer {
 			result = result + "\n";
 		} 
 		System.out.println("--------------------------------------------");
-		System.out.println("--------------------------------------------");
 		System.out.println(result);
 		System.out.println("--------------------------------------------");
-		System.out.println("--------------------------------------------");
+		System.out.println("\n \n \n");
+		
 		
 		
 	}
