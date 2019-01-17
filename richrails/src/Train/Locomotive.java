@@ -13,6 +13,7 @@ public class Locomotive implements Component {
 		this.horsePower = horsePower;
 	}
 	
+	@Override
 	public String getName() {
 		return name;
 	}

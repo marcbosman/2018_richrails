@@ -28,6 +28,7 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import javax.swing.JTextArea;
 import java.awt.SystemColor;
 import javax.swing.JLabel;
+import persistence.SavingFactory;
 
 @SuppressWarnings("serial")
 public class PoorInterface extends javax.swing.JFrame
@@ -183,6 +184,7 @@ public class PoorInterface extends javax.swing.JFrame
 						      catch (Exception e) {
 						    	  System.out.println("Exception occured: " + e);
 						      }
+						    SavingFactory.getSave("XML");
 						}
 					});
 					btnSubmit.setText("Submit");

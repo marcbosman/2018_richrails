@@ -95,7 +95,7 @@ public class richrailsCommand extends richrailsBaseListener {
 	
 		for (Train t: TrainController.getInstance().getAllTrains()) {				//Check if the specified train exists
 			if (t.getName().equalsIgnoreCase(trainname)) {
-				t.getAllComponents().remove(comp);
+				t.RemComponent(comp);
 			}
 		}
 	}

@@ -13,6 +13,7 @@ public class Wagon implements Component {
 		this.seats = seats;
 	}
 	
+	@Override
 	public String getName() {
 		return name;
 	}

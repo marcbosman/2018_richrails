@@ -12,6 +12,7 @@ public class CargoWagon implements Component {
 		this.capacity = capacity;
 	}
 	
+	@Override
 	public String getName() {
 		return name;
 	}

@@ -13,6 +13,7 @@ public class Train {
 		this.name = name;
 		allComponents = new ArrayList<Component>();
 		new SideViewObserver(this);
+		new TextBasedObserver(this);
 		this.addComponent(ComponentFactory.getComponent("locomotive", name));
 		TrainController.getInstance().addTrain(this);
 			
@@ -70,5 +71,10 @@ public class Train {
 	public String toString() {
 		String s = name;
 		return s;
+	}
+	
+	public void RemComponent(Component c) {
+		allComponents.remove(c);
+		notifyAllObservers();
 	}
 }
