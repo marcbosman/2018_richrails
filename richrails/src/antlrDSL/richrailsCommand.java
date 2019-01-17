@@ -89,6 +89,14 @@ public class richrailsCommand extends richrailsBaseListener {
 	
 	@Override public void enterRemcommand(richrailsParser.RemcommandContext ctx) 
 	{
-		System.out.println("Now removing train " + ctx.getText());
+		String compname = ctx.getChild(1).getText();
+		String trainname = ctx.getChild(3).getText();
+		Component comp = TrainController.getInstance().getWagon(compname);
+	
+		for (Train t: TrainController.getInstance().getAllTrains()) {				//Check if the specified train exists
+			if (t.getName().equalsIgnoreCase(trainname)) {
+				t.getAllComponents().remove(comp);
+			}
+		}
 	}
 }
