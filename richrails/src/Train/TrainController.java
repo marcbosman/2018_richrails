@@ -6,6 +6,7 @@ public class TrainController {
 	private ArrayList<Train> Trains = new ArrayList<Train>();
 	private ArrayList<Wagon> Wagons = new ArrayList<Wagon>();
 	private ArrayList<Locomotive> Locomotives = new ArrayList<Locomotive>();
+	private ArrayList<Train> tr = new ArrayList<Train>();
 	
 	private TrainController() {};
 	
@@ -51,7 +52,8 @@ public class TrainController {
 	}
 	
 	public void delTrain(Train train) {
-		Trains.remove(train);
+		tr.add(train);
+		Trains.removeAll(tr);
 	}
 	
 	public void delLocomotive(Locomotive locomotive) {

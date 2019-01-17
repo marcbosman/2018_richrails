@@ -67,26 +67,24 @@ public class richrailsCommand extends richrailsBaseListener {
 	
 	@Override public void enterDelcommand(richrailsParser.DelcommandContext ctx) 
 	{
-//		THIS DOES NOT YET WORK, THAT'S WHY IT'S COMMENTED OUT
-		
-//		if (ctx.getChild(1).getText().equalsIgnoreCase("train")) {
-//			for (Train t: TrainController.getInstance().getAllTrains()) {
-//				if (t.getName().equalsIgnoreCase(ctx.getChild(2).getText())) {
-//					for (Component c: t.getAllComponents()) {
-//						if (c instanceof Wagon) {
-//							TrainController.getInstance().delWagon((Wagon) c);
-//						}
-//						else if (c instanceof Locomotive) {
-//							TrainController.getInstance().delLocomotive((Locomotive) c);
-//						}
-//					TrainController.getInstance().delTrain(t);
-//					}
-//				}
-//			}
-//		}
-//		else if (ctx.getChild(0).getChild(1).getText().equalsIgnoreCase("wagon")) {
-//			
-//		}
+		if (ctx.getChild(1).getText().equalsIgnoreCase("train")) {
+			for (Train t: TrainController.getInstance().getAllTrains()) {
+				if (t.getName().equalsIgnoreCase(ctx.getChild(2).getText())) {
+					for (Component c: t.getAllComponents()) {
+						if (c instanceof Wagon) {
+							TrainController.getInstance().delWagon((Wagon) c);
+						}
+						else if (c instanceof Locomotive) {
+							TrainController.getInstance().delLocomotive((Locomotive) c);
+						}
+					TrainController.getInstance().delTrain(t);
+					}
+				}
+			}
+		}
+		else if (ctx.getChild(0).getChild(1).getText().equalsIgnoreCase("wagon")) {
+			
+		}
 	}
 	
 	@Override public void enterRemcommand(richrailsParser.RemcommandContext ctx) 
