@@ -188,9 +188,9 @@ public class PoorInterface extends javax.swing.JFrame
 							//XmlSave.XmlSave(new Train("Choochoo"));
 							//XmlSave.XmlLoad();
 							
-							XmlSave xs = new XmlSave();
-							xs.saveToXML(TrainController.getInstance());
-							System.out.println(TrainController.getInstance().getAllTrains().toString());
+							//XmlSave xs = new XmlSave();
+							//xs.saveToXML(TrainController.getInstance());
+							//System.out.println(TrainController.getInstance().getAllTrains().toString());
 							
 						      }
 						      catch (Exception e) {
