@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<allTrains>
+    <train id="1">
+        <name>Thomas</name>
+        <seats>10</seats>
+        <wagons>
+            <wagon>
+                <name>Wagonnetje</name>
+                <seats>22</seats>
+            </wagon>
+            <wagon>
+                <name>Wagonnetje2</name>
+                <seats>20</seats>
+            </wagon>
+        </wagons>
+    </train>
+    <train id="1">
+        <name>Marc</name>
+        <seats>15</seats>
+        <wagons>
+            <wagon>
+                <name>Wagonnetje3</name>
+                <seats>22</seats>
+            </wagon>
+            <wagon>
+                <name>Wagonnetje4</name>
+                <seats>20</seats>
+            </wagon>
+        </wagons>
+    </train>
+</allTrains>
