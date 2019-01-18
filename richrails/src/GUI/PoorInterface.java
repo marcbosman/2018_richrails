@@ -185,14 +185,18 @@ public class PoorInterface extends javax.swing.JFrame
 							txtAreaCmd.append(command + newline);
 							textFieldCommand.setText("");
 							
-							XmlSave.XmlSave(new Train("Choochoo"));
-							XmlSave.XmlLoad();
+							//XmlSave.XmlSave(new Train("Choochoo"));
+							//XmlSave.XmlLoad();
+							
+							XmlSave xs = new XmlSave();
+							xs.saveToXML(TrainController.getInstance());
+							System.out.println(TrainController.getInstance().getAllTrains().toString());
 							
 						      }
 						      catch (Exception e) {
 						    	  System.out.println("Exception occured: " + e);
 						      }
-						    SavingFactory.getSave("XML");
+						    //SavingFactory.getSave("XML");
 						}
 					});
 					btnSubmit.setText("Submit");

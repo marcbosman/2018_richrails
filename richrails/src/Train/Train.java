@@ -2,6 +2,9 @@ package Train;
 
 import java.util.ArrayList;
 
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
 import javax.xml.bind.annotation.XmlSeeAlso;
 @XmlSeeAlso({Locomotive.class})
 
@@ -28,6 +31,13 @@ public class Train {
 		notifyAllObservers();
 	}
 	
+	@XmlElement(name="name")
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	@XmlElementWrapper(name="components")
+    @XmlElement(name="component")
 	public ArrayList<Component> getAllComponents() {
 		return allComponents;
 	}
@@ -41,12 +51,13 @@ public class Train {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public int getTrainID() {
 		return trainID;
+	}
+	
+	@XmlAttribute
+	public void setTrainID(int id) {
+		this.trainID = id;
 	}
 	
 	public ArrayList<Component> getState(){

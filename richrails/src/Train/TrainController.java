@@ -1,6 +1,11 @@
 package Train;
 
 import java.util.*;
+
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name="allTrains")
 public class TrainController {
 	private static TrainController instance = new TrainController();
 	private ArrayList<Train> Trains = new ArrayList<Train>();
@@ -13,12 +18,18 @@ public class TrainController {
 	public static TrainController getInstance() {
 		return instance;
 	}
+	
 	public void addTrain(Train train) {
 		this.Trains.add(train);
 	}
 	
 	public void addWagon(Wagon wagon) {
 		this.Wagons.add(wagon);
+	}
+	
+	//@XmlElement
+	public void setWagons(ArrayList<Wagon> wagons) {
+		this.Wagons = wagons;
 	}
 	
 	public void addLocomotive(Locomotive Locomotive) {
@@ -34,6 +45,15 @@ public class TrainController {
 	}
 	
 	public ArrayList<Train> getAllTrains(){
+		return Trains;
+	}
+	
+	@XmlElement(name="train")
+	public void setTrains(ArrayList<Train> trains) {
+		this.Trains = trains;
+	}
+	
+	public ArrayList<Train> getTrains() {
 		return Trains;
 	}
 	
@@ -98,5 +118,10 @@ public class TrainController {
 			}
 		}
 		return wa;
+	}
+	
+	//@XmlElement
+	public void setLocomotives(ArrayList<Locomotive> locomotives) {
+		this.Locomotives = locomotives;
 	}
 }

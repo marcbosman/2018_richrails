@@ -84,4 +84,25 @@ public class XmlSave implements Save {
 			return null;
 		}
 	}
+	
+	public boolean saveToXML(TrainController tc) {
+		boolean result = false;
+		
+		try {
+			//File file = new File("C:\\Users\\Marc\\richrail_2018\\xml_test\\src\\xml_test\\save.xml");
+	        JAXBContext jaxbContext = JAXBContext.newInstance(TrainController.class);
+	        Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
+
+	        jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
+
+	        //jaxbMarshaller.marshal(tc, file);
+	        jaxbMarshaller.marshal(tc, System.out);
+	        
+	        result = true;
+	        return result;
+		} catch (JAXBException e) {
+			e.printStackTrace();
+			return result;
+		}
+	}
 }
