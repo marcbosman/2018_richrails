@@ -25,10 +25,14 @@ import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
+import Train.Train;
+import Train.TrainController;
+
 import javax.swing.JTextArea;
 import java.awt.SystemColor;
 import javax.swing.JLabel;
 import persistence.SavingFactory;
+import persistence.XmlSave;
 
 @SuppressWarnings("serial")
 public class PoorInterface extends javax.swing.JFrame
@@ -180,6 +184,10 @@ public class PoorInterface extends javax.swing.JFrame
 							String command = textFieldCommand.getText();
 							txtAreaCmd.append(command + newline);
 							textFieldCommand.setText("");
+							
+							XmlSave.XmlSave(new Train("Choochoo"));
+							XmlSave.XmlLoad();
+							
 						      }
 						      catch (Exception e) {
 						    	  System.out.println("Exception occured: " + e);

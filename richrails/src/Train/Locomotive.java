@@ -1,5 +1,7 @@
 package Train;
 
+import javax.xml.bind.annotation.adapters.XmlAdapter;
+
 public class Locomotive implements Component {
 	private String name;
 	private int LocomotiveId;
@@ -38,4 +40,12 @@ public class Locomotive implements Component {
 		String s = "The id for this locomotive is " + LocomotiveId + ", it's name is " + name + " and it has " + horsePower + " horsepower.";
 		return s;
 	}
+	
+    public static class ParentAdapter extends XmlAdapter<Object,Object>{
+        @Override
+        public Object marshal( Object arg0 ) throws Exception{ return arg0; }
+
+        @Override
+        public Object unmarshal( Object arg0 ) throws Exception{ return arg0; }
+    }
 }

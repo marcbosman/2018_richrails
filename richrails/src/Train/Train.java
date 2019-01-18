@@ -2,6 +2,10 @@ package Train;
 
 import java.util.ArrayList;
 
+import javax.xml.bind.annotation.XmlSeeAlso;
+@XmlSeeAlso({Locomotive.class})
+
+
 public class Train {
 	private ArrayList<Component> allComponents;
 	private String name;

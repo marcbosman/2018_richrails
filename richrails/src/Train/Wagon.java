@@ -1,5 +1,7 @@
 package Train;
 
+import javax.xml.bind.annotation.adapters.XmlAdapter;
+
 public class Wagon implements Component {
 	private String name;
 	private int wagonID;
@@ -39,3 +41,12 @@ public class Wagon implements Component {
 		return s;
 	}
 }
+	
+//    public static class ParentAdapter extends XmlAdapter<Object,Object>{
+//        @Override
+//        public Object marshal( Object arg0 ) throws Exception{ return arg0; }
+//
+//        @Override
+//        public Object unmarshal( Object arg0 ) throws Exception{ return arg0; }
+//    }
+
